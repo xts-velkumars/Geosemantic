@@ -1,12 +1,12 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using Geosemantic.Data;
+using Geosemantic.ViewModel;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Ste.Data;
-using Ste.ViewModel;
 
-namespace Ste.Queries.User
+namespace Geosemantic.Queries.User
 {
     public class UserQueryHandler : IRequestHandler<UserQuery, UserViewModel>
     {

@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using Xen.Command;
 using Xen.Common;
 
-namespace Ste.Command.Login
+namespace Geosemantic.Command.Login
 {
     public class LoginCommand : XenCommand<XenResult<IList<Claim>>>
     {

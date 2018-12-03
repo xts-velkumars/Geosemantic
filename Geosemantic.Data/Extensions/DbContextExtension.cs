@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Ste.Data.Extensions
+namespace Geosemantic.Data.Extensions
 {
     public static class DbContextExtension
     {

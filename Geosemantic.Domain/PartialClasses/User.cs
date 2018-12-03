@@ -1,4 +1,4 @@
-﻿namespace Ste.Domain.Entities
+﻿namespace Geosemantic.Domain.Entities
 {
     public partial class User
     {

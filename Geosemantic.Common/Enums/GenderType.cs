@@ -1,4 +1,4 @@
-﻿namespace Ste.Common.Enums
+﻿namespace Geosemantic.Common.Enums
 {
     public enum GenderType : byte
     {

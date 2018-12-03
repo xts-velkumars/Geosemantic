@@ -5,6 +5,18 @@ VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Geosemantic.Api", "Geosemantic.Api\Geosemantic.Api.csproj", "{E307B155-339F-48F2-92B5-E3F7B7DC1FE8}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Geosemantic.Command", "Geosemantic.Command\Geosemantic.Command.csproj", "{AF239080-E0B4-45DD-9A98-EC35D6303F1E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Geosemantic.Common", "Geosemantic.Common\Geosemantic.Common.csproj", "{E749DE22-F460-44EF-8F06-C5F43E40CAFD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Geosemantic.Data", "Geosemantic.Data\Geosemantic.Data.csproj", "{9910ABF9-B5AD-4ED5-BE6E-42F9E40CB58E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Geosemantic.Domain", "Geosemantic.Domain\Geosemantic.Domain.csproj", "{6DA18659-E29F-445D-90F6-04E17BE6F7B1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Geosemantic.Queries", "Geosemantic.Queries\Geosemantic.Queries.csproj", "{7ABA2651-BC15-4DE5-92DC-BDC3253BED9A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Geosemantic.ViewModel", "Geosemantic.ViewModel\Geosemantic.ViewModel.csproj", "{0622958C-DF8E-4F7C-91F7-EC21C041DB17}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +27,30 @@ Global
 		{E307B155-339F-48F2-92B5-E3F7B7DC1FE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E307B155-339F-48F2-92B5-E3F7B7DC1FE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E307B155-339F-48F2-92B5-E3F7B7DC1FE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF239080-E0B4-45DD-9A98-EC35D6303F1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF239080-E0B4-45DD-9A98-EC35D6303F1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF239080-E0B4-45DD-9A98-EC35D6303F1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF239080-E0B4-45DD-9A98-EC35D6303F1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E749DE22-F460-44EF-8F06-C5F43E40CAFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E749DE22-F460-44EF-8F06-C5F43E40CAFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E749DE22-F460-44EF-8F06-C5F43E40CAFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E749DE22-F460-44EF-8F06-C5F43E40CAFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9910ABF9-B5AD-4ED5-BE6E-42F9E40CB58E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9910ABF9-B5AD-4ED5-BE6E-42F9E40CB58E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9910ABF9-B5AD-4ED5-BE6E-42F9E40CB58E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9910ABF9-B5AD-4ED5-BE6E-42F9E40CB58E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DA18659-E29F-445D-90F6-04E17BE6F7B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DA18659-E29F-445D-90F6-04E17BE6F7B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DA18659-E29F-445D-90F6-04E17BE6F7B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DA18659-E29F-445D-90F6-04E17BE6F7B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7ABA2651-BC15-4DE5-92DC-BDC3253BED9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7ABA2651-BC15-4DE5-92DC-BDC3253BED9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7ABA2651-BC15-4DE5-92DC-BDC3253BED9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7ABA2651-BC15-4DE5-92DC-BDC3253BED9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0622958C-DF8E-4F7C-91F7-EC21C041DB17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0622958C-DF8E-4F7C-91F7-EC21C041DB17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0622958C-DF8E-4F7C-91F7-EC21C041DB17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0622958C-DF8E-4F7C-91F7-EC21C041DB17}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

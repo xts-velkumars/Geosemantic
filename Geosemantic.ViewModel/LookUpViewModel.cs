@@ -1,4 +1,4 @@
-﻿namespace Ste.ViewModel
+﻿namespace Geosemantic.ViewModel
 {
     public class LookUpViewModel
     {

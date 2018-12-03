@@ -7,7 +7,11 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.4" />
-    <PackageReference Include="Xen.Entity" Version="4.0.3" />
+    <PackageReference Include="Xen.Entity" Version="4.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Geosemantic.Domain\Geosemantic.Domain.csproj" />
   </ItemGroup>
 
 </Project>

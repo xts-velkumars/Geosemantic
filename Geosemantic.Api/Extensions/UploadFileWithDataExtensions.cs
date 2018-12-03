@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Geosemantic.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Ste.ViewModel;
 
-namespace Ste.Api.Extensions
+namespace Geosemantic.Api.Extensions
 {
     public static class UploadFileWithDataExtensions
     {

@@ -1,13 +1,13 @@
-﻿using MediatR;
+﻿using Geosemantic.Command.Login;
+using Geosemantic.Common;
+using Geosemantic.Queries.CommandAudit;
+using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using Ste.Command.Login;
-using Ste.Common;
-using Ste.Queries.CommandAudit;
 using Xen.Common.Constants;
 
-namespace Ste.Api.Extensions
+namespace Geosemantic.Api.Extensions
 {
     public static class ServicesExtensions
     {

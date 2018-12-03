@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Ste.ViewModel;
+using Geosemantic.ViewModel;
 using Xen.Query;
 
-namespace Ste.Queries.CommandAudit
+namespace Geosemantic.Queries.CommandAudit
 {
     public class CommandAuditsQuery : XenQuery<IEnumerable<CommandAuditsViewModel>>
     {

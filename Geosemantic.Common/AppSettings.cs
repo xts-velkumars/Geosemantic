@@ -1,4 +1,4 @@
-﻿namespace Ste.Common
+﻿namespace Geosemantic.Common
 {
     public class AppSettings
     {

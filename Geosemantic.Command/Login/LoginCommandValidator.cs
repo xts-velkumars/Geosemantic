@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Ste.Command.Login
+namespace Geosemantic.Command.Login
 {
     public class LoginCommandValidator : AbstractValidator<LoginCommand>
     {

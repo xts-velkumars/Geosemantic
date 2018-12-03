@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Ste.ViewModel
+namespace Geosemantic.ViewModel
 {
     public class FileViewModel
     {

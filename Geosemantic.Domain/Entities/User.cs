@@ -1,8 +1,7 @@
-﻿using Ste.Common.Enums;
-using System;
+﻿using Geosemantic.Common.Enums;
 using Xen.Entity.Entities;
 
-namespace Ste.Domain.Entities
+namespace Geosemantic.Domain.Entities
 {
     public partial class User : BaseEntity
     {

@@ -3,13 +3,13 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
+using Geosemantic.Data;
+using Geosemantic.ViewModel;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Ste.Data;
-using Ste.ViewModel;
 
-namespace Ste.Queries.User
+namespace Geosemantic.Queries.User
 {
     public class UsersQueryHandler : IRequestHandler<UsersQuery, IEnumerable<UsersViewModel>>
     {

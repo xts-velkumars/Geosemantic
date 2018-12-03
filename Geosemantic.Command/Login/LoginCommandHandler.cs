@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
+using Geosemantic.Data;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Ste.Data;
 using Xen.Common;
 using Xen.Common.Constants;
 using Xen.Common.Enums;
 using Xen.Extensions;
 
-namespace Ste.Command.Login
+namespace Geosemantic.Command.Login
 {
     public class LoginCommandHandler : IRequestHandler<LoginCommand, XenResult<IList<Claim>>>
     {

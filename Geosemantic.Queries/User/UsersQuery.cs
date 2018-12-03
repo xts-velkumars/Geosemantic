@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Ste.ViewModel;
+using Geosemantic.ViewModel;
 using Xen.Common.Interface;
 using Xen.Query;
 
-namespace Ste.Queries.User
+namespace Geosemantic.Queries.User
 {
     public class UsersQuery : XenQuery<IEnumerable<UsersViewModel>>
     {

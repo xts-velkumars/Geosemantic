@@ -5,3 +5,17 @@
 /.vs
 /ReactWeb/.vscode
 /ReactWeb/React.Data/Migrations
+/Geosemantic.Api/bin/Debug/netcoreapp2.1
+/Geosemantic.Api/obj
+/Geosemantic.Command/obj
+/Geosemantic.Common/bin/Debug/netstandard2.0
+/Geosemantic.Common/obj
+/Geosemantic.Data/bin/Debug/netstandard2.0
+/Geosemantic.Data/obj
+/Geosemantic.Domain/bin/Debug/netstandard2.0
+/Geosemantic.Domain/obj
+/Geosemantic.Queries/obj
+/Geosemantic.Queries/bin/Debug/netstandard2.0
+/Geosemantic.ViewModel/obj
+/Geosemantic.ViewModel/bin/Debug/netstandard2.0
+/Geosemantic.Command/bin/Debug/netstandard2.0

@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Geosemantic.Data;
+using Geosemantic.ViewModel;
 using MediatR;
-using Ste.Data;
-using Ste.ViewModel;
 
-namespace Ste.Queries.CommandAudit
+namespace Geosemantic.Queries.CommandAudit
 {
     public class CommandAuditsQueryHandler : IRequestHandler<CommandAuditsQuery, IEnumerable<CommandAuditsViewModel>>
     {

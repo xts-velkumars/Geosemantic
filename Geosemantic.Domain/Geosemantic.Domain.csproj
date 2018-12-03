@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xen.Common" Version="4.0.3" />
-    <PackageReference Include="Xen.Entity" Version="4.0.3" />
+    <PackageReference Include="Xen.Common" Version="4.0.4" />
+    <PackageReference Include="Xen.Entity" Version="4.0.4" />
   </ItemGroup>
 
   <ItemGroup>

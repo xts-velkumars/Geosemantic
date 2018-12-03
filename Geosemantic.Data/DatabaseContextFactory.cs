@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
-namespace Ste.Data
+namespace Geosemantic.Data
 {
     public class DatabaseContextFactory : IDesignTimeDbContextFactory<SteEntities>
     {

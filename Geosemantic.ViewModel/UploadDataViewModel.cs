@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Ste.ViewModel
+namespace Geosemantic.ViewModel
 {
     public class UploadDataViewModel
     {

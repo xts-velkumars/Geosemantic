@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Ste.ViewModel
+namespace Geosemantic.ViewModel
 {
     public class CommandAuditsViewModel
     {

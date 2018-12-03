@@ -1,7 +1,7 @@
-﻿using Ste.ViewModel;
+﻿using Geosemantic.ViewModel;
 using Xen.Query;
 
-namespace Ste.Queries.User
+namespace Geosemantic.Queries.User
 {
     public class UserQuery : XenQuery<UserViewModel>
     {

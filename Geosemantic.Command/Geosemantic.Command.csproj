@@ -5,13 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-    <PackageReference Include="Xen.Command" Version="4.0.3" />
-    <PackageReference Include="Xen.Common" Version="4.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="Xen.Command" Version="4.0.4" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Ste.Data\Ste.Data.csproj" />
+    <ProjectReference Include="..\Geosemantic.Data\Geosemantic.Data.csproj" />
   </ItemGroup>
 
 </Project>

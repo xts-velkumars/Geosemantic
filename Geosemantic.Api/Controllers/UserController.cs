@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Geosemantic.Queries.User;
+using Geosemantic.ViewModel;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Ste.Queries.User;
-using Ste.ViewModel;
 using Xen.Common.Interface;
 
-namespace Ste.Api.Controllers
+namespace Geosemantic.Api.Controllers
 {
     public class UserController : Controller
     {

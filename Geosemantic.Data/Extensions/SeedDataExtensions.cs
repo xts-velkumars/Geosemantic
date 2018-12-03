@@ -1,8 +1,4 @@
-﻿using System;
-using Xen.Common.Enums;
-using Xen.Extensions;
-
-namespace Ste.Data.Extensions
+﻿namespace Geosemantic.Data.Extensions
 {
 
     public static class SeedDataExtensions

@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Ste.Domain.Entities;
+﻿using Geosemantic.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using Xen.Entity;
 
-namespace Ste.Data
+namespace Geosemantic.Data
 {
     public class SteEntities : XenContext
     {

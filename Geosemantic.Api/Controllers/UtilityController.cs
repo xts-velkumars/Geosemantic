@@ -1,8 +1,8 @@
 ﻿using System.Reflection;
+using Geosemantic.Common;
 using Microsoft.AspNetCore.Mvc;
-using Ste.Common;
 
-namespace Ste.Api.Controllers
+namespace Geosemantic.Api.Controllers
 {
     public class UtilityController : Controller
     {

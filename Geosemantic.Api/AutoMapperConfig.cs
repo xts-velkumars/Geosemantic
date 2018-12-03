@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using AutoMapper;
-using Ste.Domain.Entities;
-using Ste.ViewModel;
+using Geosemantic.Domain.Entities;
+using Geosemantic.ViewModel;
 
-namespace Ste.Api
+namespace Geosemantic.Api
 {
     public static class AutoMapperConfig
     {

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Ste.Data.Migrations
+namespace Geosemantic.Data.Migrations
 {
     public partial class Mig : Migration
     {

@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using FluentValidation.AspNetCore;
+using Geosemantic.Api.Extensions;
+using Geosemantic.Command.Login;
+using Geosemantic.Data;
+using Geosemantic.Data.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -20,21 +24,16 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
 using Swashbuckle.AspNetCore.Swagger;
-using Ste.Api.Extensions;
-using Ste.Command.Login;
-using Ste.Data;
-using Ste.Data.Extensions;
 using Xen.Api.Extensions;
 using Xen.Api.Infrastructure;
 using Xen.Command.Extensions;
-using Xen.Common.Constants;
 using Xen.Entity;
 using Xen.Logger.Extensions;
 using Xen.Oauth;
 using Xen.Oauth.Extensions;
 using Xen.Query.Extensions;
 
-namespace Ste.Api
+namespace Geosemantic.Api
 {
     public class Startup
     {
