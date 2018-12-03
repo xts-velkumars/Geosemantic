@@ -1,0 +1,62 @@
+@import "src/@fuse/scss/fuse";
+
+:host {
+
+    #users {
+
+        
+
+        > .center {
+
+            > .header {
+
+                .title-bar{
+                    width: 100%;
+                }
+
+                .search-input-wrapper {
+                     max-width: 480px;
+                }
+
+                // @include media-breakpoint-down(xs) {
+                //     margin: 8px 0;
+                //     height: 145px !important;
+                //     min-height: 145px !important;
+                //     max-height: 145px !important;
+                // }
+            }
+        }
+    }
+
+    .users-table {
+        flex: 1 1 auto;
+        border-bottom: 1px solid rgba(0, 0, 0, .12);
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+
+        .mat-header-row {
+            min-height: 55px;
+        }
+        .checkbox{
+            max-width: 75px;
+        }
+        .actions{
+            text-align: center;
+            max-width: 150px;
+        }
+        .mat-row{
+            max-height: 30px; 
+        }
+
+        .mat-column-buttons {
+            flex: 0 1 80px;
+        }
+
+        .sub-name{
+            font-size: 11px !important;
+        }
+
+       
+    }
+    
+}

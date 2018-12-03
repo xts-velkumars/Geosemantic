@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningLevel>0</WarningLevel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.8.1" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.3.1" />
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Xen.Api" Version="4.0.2" />
+    <PackageReference Include="Xen.Command" Version="4.0.3" />
+    <PackageReference Include="Xen.Common" Version="4.0.3" />
+    <PackageReference Include="Xen.Entity" Version="4.0.3" />
+    <PackageReference Include="Xen.Logger" Version="4.0.3" />
+    <PackageReference Include="Xen.Oauth" Version="4.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ste.Command\Ste.Command.csproj" />
+    <ProjectReference Include="..\Ste.Data\Ste.Data.csproj" />
+    <ProjectReference Include="..\Ste.Queries\Ste.Queries.csproj" />
+    <ProjectReference Include="..\Ste.ViewModel\Ste.ViewModel.csproj" />
+  </ItemGroup>
+
+</Project>

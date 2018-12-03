@@ -1,0 +1,100 @@
+<!-- <div class="role page-layout carded fullwidth inner-scroll">
+    <div class="top-bg accent"></div>
+    <div class="center">
+        <div class="header accent" fxLayout="column" fxLayoutAlign="center start">
+            <div class="title-bar" fxLayout="column" fxLayoutAlign="top start" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+                <div class="logo my-12 m-sm-0 pt-14" fxLayout="row" fxLayoutAlign="start center">
+                    <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                        Role Detail
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="content-card">
+            <div class="card-header" fxLayout="row" fxLayoutAlign="start center">
+                <span class="card-text h2" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    {{cardTitle}}
+                </span>
+            </div>
+            <div class="info-content">
+                <form novalidate name="form" [formGroup]="form" class="p-24 mr-24" fxLayout="column" fxLayoutAlign="start"
+                    fxFlex="1 0 auto" fusePerfectScrollbar>
+
+                    <mat-form-field fxFlex="50">
+                        <input matInput placeholder="Role name" formControlName="name" required>
+                        <mat-error>Role Name is required!</mat-error>
+                    </mat-form-field>
+
+                    <div fxLayout="row" class="button-bar" fxLayoutAlign="end center">
+                        <button mat-raised-button color="warn" [routerLink]="'/users'">
+                            <mat-icon class="material-icons md-36">remove</mat-icon>
+                            Cancel
+                        </button>
+
+                        <button mat-raised-button color="accent" (click)="save()">
+                            <mat-icon class="material-icons md-36">save</mat-icon>
+                            Save
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<div class="dialog-content-wrapper">
+    <div matDialogTitle class="mat-accent m-0">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="title dialog-title">{{dialogTitle}}</span>
+            <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </div>
+
+    <div mat-dialog-content class="p-24 m-0" fusePerfectScrollbar>
+
+        <form [formGroup]="roleForm">
+
+            <div class="mb-24" fxLayout="row" fxLayoutAlign="start start">
+                <mat-form-field fxFlex>
+                    <!-- <mat-icon matPrefix class="mr-12 s-20 secondary-text">account_circle</mat-icon> -->
+                    <input name="name" formControlName="name" placeholder="Role name" matInput required>
+                </mat-form-field>
+            </div>
+
+        </form>
+
+    </div>
+
+    <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+
+        <button *ngIf="action !=='edit'"
+                mat-raised-button
+                (click)="matDialogRef.close(['save',roleForm])"
+                class="save-button mat-accent"
+                [disabled]="roleForm.invalid"
+                aria-label="SAVE">
+            SAVE
+        </button>
+
+        <button *ngIf="action ==='edit'"
+                mat-raised-button
+                (click)="matDialogRef.close(['save',roleForm])"
+                class="save-button mat-accent"
+                [disabled]="roleForm.invalid"
+                aria-label="SAVE">
+            SAVE
+        </button>
+
+        <button *ngIf="action ==='edit'"
+                mat-icon-button
+                (click)="matDialogRef.close(['delete',roleForm])"
+                aria-label="Delete"
+                matTooltip="Delete">
+            <mat-icon>delete</mat-icon>
+        </button>
+
+    </div>
+</div>

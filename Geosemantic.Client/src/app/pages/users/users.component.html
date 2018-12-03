@@ -1,0 +1,183 @@
+<div id="users" class="page-layout carded fullwidth inner-scroll">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header accent" fxLayout="column" fxLayoutAlign="top start">
+            <div class="title-bar" fxLayout="column" fxLayoutAlign="top start" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+                <!-- APP TITLE -->
+                <div class="logo m-sm-0 my-6" fxFlex="25">
+                    <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                        Users
+                    </span>
+                </div>
+                <!-- / APP TITLE -->
+
+                <!-- SEARCH -->
+                <div class="search-input-wrapper mx-xs-24 m-md-0" fxFlex="25" fxLayout="row" fxLayoutAlign="start center">
+                    <label for="search" class="mr-8">
+                        <mat-icon class="secondary-text">search</mat-icon>
+                    </label>
+                    <mat-form-field floatLabel="never" fxFlex="1 0 auto">
+                        <input id="search" matInput #filter placeholder="Search">
+                    </mat-form-field>
+                </div>
+                <!-- / SEARCH -->
+            </div>
+            <div class="title-bar button-bar" fxLayout="row" fxLayoutAlign="start start" *ngIf="tabindex==0" [@animate]="{value:'*',params:{delay:'100ms',y:'25px'}}">
+                <button mat-stroked-button color="primary" [routerLink]="'/user/0'" class="title-button fuse-white my-12 mt-sm-0">
+                    New User
+                </button>
+
+                <button mat-stroked-button color="primary" class="title-button fuse-white my-12 mt-sm-0" [disabled]="isUserDeleteDisable()" (click)="delete()">
+                    Delete
+                </button>
+                <button mat-stroked-button color="primary" class="title-button fuse-white my-12 mt-sm-0">
+                    More
+                </button>
+            </div>
+            <div class="title-bar button-bar" fxLayout="row" fxLayoutAlign="start start"  *ngIf="tabindex==1" [@animate]="{value:'*',params:{delay:'100ms',y:'25px'}}">
+                <button mat-stroked-button color="primary" (click)="actionRole('add',0)" class="title-button fuse-white my-12 mt-sm-0">
+                    Add Role
+                </button>
+                <button mat-stroked-button color="primary" class="title-button fuse-white my-12 mt-sm-0" [disabled]="isRoleDeleteDisable()" (click)="delete()">
+                    Delete
+                </button>
+                <button mat-stroked-button color="primary" class="title-button fuse-white my-12 mt-sm-0">
+                    More
+                </button>
+            </div>
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+            <mat-tab-group (selectedTabChange)="onTabClick($event)">
+                <mat-tab label="Users">
+                    <mat-table class="users-table" #table [dataSource]="userDataSource" matSort [@animateStagger]="{value:'50'}"
+                        fusePerfectScrollbar>
+
+                        <!-- Checkbox Column -->
+                        <ng-container matColumnDef="select">
+                            <mat-header-cell *matHeaderCellDef class="checkbox">
+                                <mat-checkbox (change)="$event ? userMasterToggle() : null" [checked]="userSelection.hasValue() && isAllSelectedUser()"
+                                    [indeterminate]="userSelection.hasValue() && !isAllSelectedUser()">
+                                </mat-checkbox>
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let row" class="checkbox">
+                                <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? userSelection.toggle(row) : null"
+                                    [checked]="userSelection.isSelected(row)">
+                                </mat-checkbox>
+                            </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="fullName">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+                            <mat-cell *matCellDef="let users">
+                            <div fxLayout="row" fxLayoutAlign="start center">
+                                <img 
+                                    src="assets/images/avatars/profile.jpg"
+                                    class="mat-avatar avatar"
+                                    alt="{{users.fullName}}" fxHide fxShow.gt-sm/>
+                                <div fxFlex fxLayout="column" fxLayoutAlign="center start">
+                                    <div class="text-truncate">{{users.fullName}}</div>
+                                    <div class="text-truncate sub-name">{{users.emailAddress}}</div>
+                                </div>
+                                </div>
+                            </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="mobileNumber">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Mobile No</mat-header-cell>
+                                <mat-cell *matCellDef="let users" fxHide fxShow.gt-sm>
+                                    <p class="text-truncate">{{users.mobileNumber}}</p>
+                                </mat-cell>
+                            </ng-container>
+
+                        <ng-container matColumnDef="roleName">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header fxLayout.gt-xs="row" fxLayoutAlign="center center" fxLayoutAlign.gt-xs="start center">Role</mat-header-cell>
+                            <mat-cell *matCellDef="let users" fxLayout.gt-xs="row" fxLayoutAlign="center center" fxLayoutAlign.gt-xs="start center">
+                                <p class="text-truncate">{{users.roleName}}</p>
+                            </mat-cell>
+                        </ng-container>
+                        
+                        <ng-container matColumnDef="actions" >
+                            <mat-header-cell *matHeaderCellDef class="actions" fxHide fxShow.gt-sm>Actions </mat-header-cell>
+                            <mat-cell *matCellDef="let users" class="button-bar actions" fxHide fxShow.gt-sm>
+                                <button mat-icon-button color="accent" [routerLink]="'/user/'+users.id">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                                <button mat-icon-button color="accent" matTooltip="Deactivate" (click)="activeStatus(users)"
+                                    *ngIf="users.isActive">
+                                    <mat-icon>toggle_on</mat-icon>
+                                </button>
+                                <button mat-icon-button color="warn" matTooltip="Activate" (click)="activeStatus(users)"
+                                    *ngIf="!users.isActive">
+                                    <mat-icon>toggle_off</mat-icon>
+                                </button>
+                            </mat-cell>
+                        </ng-container>
+                        <mat-header-row *matHeaderRowDef="usersColumns; sticky:true"></mat-header-row>
+                        <mat-row *matRowDef="let users; columns: usersColumns;">
+                        </mat-row>
+                    </mat-table>
+                </mat-tab>
+                <mat-tab label="Roles">
+                        <mat-table class="users-table" #table [dataSource]="roleDataSource" matSort [@animateStagger]="{value:'50'}"
+                        fusePerfectScrollbar>
+                        <ng-container matColumnDef="selectRole">
+                            <mat-header-cell *matHeaderCellDef class="checkbox">
+                                <mat-checkbox (change)="$event ? roleMasterToggle() : null" [checked]="roleSelection.hasValue() && isAllSelectedRole()"
+                                    [indeterminate]="roleSelection.hasValue() && !isAllSelectedRole()">
+                                </mat-checkbox>
+                            </mat-header-cell>
+                            <mat-cell *matCellDef="let row" class="checkbox">
+                                <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? roleSelection.toggle(row) : null"
+                                    [checked]="roleSelection.isSelected(row)">
+                                </mat-checkbox>
+                            </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="id">
+                                <mat-header-cell *matHeaderCellDef mat-sort-header fxHide>Id</mat-header-cell>
+                                <mat-cell *matCellDef="let role" fxHide>
+                                    <p class="text-truncate">{{role.id}}</p>
+                                </mat-cell>
+                            </ng-container>
+                        <ng-container matColumnDef="name">
+                            <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+                            <mat-cell *matCellDef="let role">
+                                <p class="text-truncate">{{role.name}}</p>
+                            </mat-cell>
+                        </ng-container>
+                        
+                        <ng-container matColumnDef="actions">
+                            <mat-header-cell *matHeaderCellDef class="actions" fxLayout.gt-xs="row" fxLayoutAlign="center center" fxLayoutAlign.gt-xs="start center">Actions </mat-header-cell>
+                            <mat-cell *matCellDef="let role" class="button-bar actions" fxLayout.gt-xs="row" fxLayoutAlign="center center" fxLayoutAlign.gt-xs="start center">
+                                    <!-- [routerLink]="'/role/'+role.id" -->
+                                <button mat-icon-button color="accent"  (click)="actionRole('edit',role.id)">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                            </mat-cell>
+                        </ng-container>
+                        <mat-header-row *matHeaderRowDef="rolesColumns; sticky:true"></mat-header-row>
+                        <mat-row *matRowDef="let role; columns: rolesColumns;">
+                        </mat-row>
+                    </mat-table>
+                </mat-tab>
+            </mat-tab-group>
+            <mat-paginator *ngIf="tabindex==0" #paginator [length]="userDataSource!=null&&userDataSource.filteredData.length"
+                [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+            </mat-paginator>
+
+            <mat-paginator *ngIf="tabindex==1" #paginator [length]="roleDataSource!=null&&roleDataSource.filteredData.length"
+                [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+            </mat-paginator>
+
+        </div>
+        <!-- / CONTENT CARD -->
+    </div>
+    <!-- / CENTER -->
+</div>

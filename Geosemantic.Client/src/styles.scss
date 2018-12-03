@@ -1,0 +1,13 @@
+// Import Fuse core library
+@import "@fuse/scss/core";
+
+// Import app.theme.scss
+@import "app/app.theme";
+
+@import "~ngx-toastr/toastr";
+
+.button-bar button,
+.button-bar a {
+  margin-right: 8px !important;
+  // text-align: right !important;
+}

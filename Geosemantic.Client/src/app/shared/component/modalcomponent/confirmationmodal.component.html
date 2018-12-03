@@ -1,0 +1,10 @@
+<p mat-dialog-title>{{title}}</p>
+ 
+<mat-dialog-content>
+  <div [innerHTML]="body"> </div>
+</mat-dialog-content>
+ 
+<mat-dialog-actions align="end">
+  <button class="mat-raised-button" (click)="onCancel()">No</button>
+  <button class="mat-raised-button mat-primary" (click)="onConfirm()">Yes</button>
+</mat-dialog-actions>
