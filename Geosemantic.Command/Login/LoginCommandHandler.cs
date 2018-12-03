@@ -15,9 +15,9 @@ namespace Geosemantic.Command.Login
 {
     public class LoginCommandHandler : IRequestHandler<LoginCommand, XenResult<IList<Claim>>>
     {
-        private readonly SteEntities context;
+        private readonly GeosemanticEntities context;
 
-        public LoginCommandHandler(SteEntities context)
+        public LoginCommandHandler(GeosemanticEntities context)
         {
             this.context = context;
         }

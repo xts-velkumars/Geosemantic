@@ -111,14 +111,14 @@ namespace Geosemantic.Api
 
             services.AddSwaggerDocumentation(new Info
             {
-                Title = "STE API",
+                Title = "Geosemantic API",
                 Version = "v1.0",
-                Description = "ST Engineering Aerospace API",
+                Description = "Geosemantic",
                 Contact = new Contact
                 {
                     Name = "Xenovex Technologies",
                     Email = "velkumar.s@xenovex.com",
-                    Url = "http://xenovex.com/"
+                    Url = "http://geosemantic.co.za/"
                 }
             });
 
@@ -146,7 +146,7 @@ namespace Geosemantic.Api
 
             var builder = new ContainerBuilder();
 
-            builder.RegisterType<SteEntities>().AsSelf().As<XenContext>().InstancePerLifetimeScope();
+            builder.RegisterType<GeosemanticEntities>().AsSelf().As<XenContext>().InstancePerLifetimeScope();
 
             builder.Populate(services);
             ApplicationContainer = builder.Build();
@@ -159,10 +159,10 @@ namespace Geosemantic.Api
 
             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
-                if (!serviceScope.ServiceProvider.GetService<SteEntities>().AllMigrationsApplied())
+                if (!serviceScope.ServiceProvider.GetService<GeosemanticEntities>().AllMigrationsApplied())
                 {
-                    serviceScope.ServiceProvider.GetService<SteEntities>().Database.Migrate();
-                    serviceScope.ServiceProvider.GetService<SteEntities>().EnsureSeeded();
+                    serviceScope.ServiceProvider.GetService<GeosemanticEntities>().Database.Migrate();
+                    serviceScope.ServiceProvider.GetService<GeosemanticEntities>().EnsureSeeded();
                 }
             }
 
@@ -188,7 +188,7 @@ namespace Geosemantic.Api
          //   app.UseHttpsRedirection();
             app.UseMvc();
 
-            app.UseSwaggerDocumentation("STE API V1");
+            app.UseSwaggerDocumentation("Geosemantic API V1");
         }
 
         protected void ConfigureAuth(IApplicationBuilder app)
@@ -237,8 +237,8 @@ namespace Geosemantic.Api
 
         protected virtual void ConfigureDatabase(IServiceCollection services)
         {
-            var connectionString = Configuration.GetConnectionString("SteConnnectionString");
-            services.AddDbContext<SteEntities>(options => options.UseSqlServer(connectionString));
+            var connectionString = Configuration.GetConnectionString("ConnnectionString");
+            services.AddDbContext<GeosemanticEntities>(options => options.UseSqlServer(connectionString));
         
         }
     }

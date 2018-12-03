@@ -10,8 +10,8 @@ namespace Geosemantic.Queries.User
 {
     public class UserQueryHandler : IRequestHandler<UserQuery, UserViewModel>
     {
-        private readonly SteEntities  context;
-        public UserQueryHandler(SteEntities context)
+        private readonly GeosemanticEntities  context;
+        public UserQueryHandler(GeosemanticEntities context)
         {
             this.context = context;
         }

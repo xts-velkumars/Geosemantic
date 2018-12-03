@@ -9,9 +9,9 @@ namespace Geosemantic.Queries.CommandAudit
 {
     public class CommandAuditsQueryHandler : IRequestHandler<CommandAuditsQuery, IEnumerable<CommandAuditsViewModel>>
     {
-        private readonly SteEntities context;
+        private readonly GeosemanticEntities context;
 
-        public CommandAuditsQueryHandler(SteEntities context)
+        public CommandAuditsQueryHandler(GeosemanticEntities context)
         {
             this.context = context;
         }

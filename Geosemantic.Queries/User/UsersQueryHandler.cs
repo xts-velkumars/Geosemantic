@@ -13,10 +13,10 @@ namespace Geosemantic.Queries.User
 {
     public class UsersQueryHandler : IRequestHandler<UsersQuery, IEnumerable<UsersViewModel>>
     {
-        private readonly SteEntities context;
+        private readonly GeosemanticEntities context;
         private readonly ILogger<UsersQueryHandler> logger;
 
-        public UsersQueryHandler(SteEntities context, ILogger<UsersQueryHandler> logger)
+        public UsersQueryHandler(GeosemanticEntities context, ILogger<UsersQueryHandler> logger)
         {
             this.context = context;
             this.logger = logger;

@@ -6,7 +6,7 @@ namespace Geosemantic.Data.Extensions
 {
     public static class DbContextExtension
     {
-        public static bool AllMigrationsApplied(this SteEntities context)
+        public static bool AllMigrationsApplied(this GeosemanticEntities context)
         {
             var applied = context.GetService<IHistoryRepository>()
                 .GetAppliedMigrations()

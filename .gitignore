@@ -19,3 +19,10 @@
 /Geosemantic.ViewModel/obj
 /Geosemantic.ViewModel/bin/Debug/netstandard2.0
 /Geosemantic.Command/bin/Debug/netstandard2.0
+/Geosemantic.Api/bin/Release/netcoreapp2.1
+/Geosemantic.Common/bin/Release/netstandard2.0
+/Geosemantic.Command/bin/Release/netstandard2.0
+/Geosemantic.Data/bin/Release/netstandard2.0
+/Geosemantic.Domain/bin/Release/netstandard2.0
+/Geosemantic.Queries/bin/Release/netstandard2.0
+/Geosemantic.ViewModel/bin/Release/netstandard2.0
