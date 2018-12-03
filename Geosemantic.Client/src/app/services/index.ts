@@ -8,4 +8,6 @@ export * from './userpagesession.service';
 export * from './navigation.service';
 export * from './organisationpagesession.service';
 export * from './utility.service';
+export * from './register.service';
+
 

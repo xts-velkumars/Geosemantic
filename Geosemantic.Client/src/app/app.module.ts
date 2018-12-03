@@ -21,7 +21,8 @@ import { LayoutModule } from 'app/layout/layout.module';
 import { SharedModule } from "./shared/shared.module";
 // Import routing module
 import { AppRoutingModule } from './app.routing';
-import { AuthenticationService,UserSessionService,AlertService,HttpInterceptorService,DataService,UserPageSessionService,NavigationService,OrganisationPageSessionService,PageService} from 'app/services'
+import { AuthenticationService,UserSessionService,AlertService,HttpInterceptorService,DataService,UserPageSessionService,NavigationService,OrganisationPageSessionService,PageService,RegisterService} from 'app/services';
+import { UserService } from 'app/pages/user/user.service';
 import { AuthGuard } from './guards';
 import {OrganisationService} from '../app/pages/organisation/organisation.service';
 import { ConfirmationModalComponent } from './shared/component/modalcomponent/confirmationmodal.component';
@@ -80,9 +81,11 @@ const appRoutes: Routes = [
         UserSessionService,
         DataService,
         PageService,
+        RegisterService,
         OrganisationPageSessionService,
         OrganisationService,
         NavigationService,
+        UserService,
         UserPageSessionService,{
         provide: HTTP_INTERCEPTORS,
         useClass: HttpInterceptorService,

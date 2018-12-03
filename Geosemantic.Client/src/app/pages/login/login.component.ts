@@ -78,6 +78,7 @@ export class LoginComponent implements OnInit
     }
 
     login() {
+        debugger;
         if (this.loginForm.valid) {
             this.authService.login(this.vm.username, this.vm.password).subscribe(() => {
                 this.organisation();
@@ -112,6 +113,7 @@ export class LoginComponent implements OnInit
       }
 
       proceedOrganisation() {
-        this.router.navigate(['/organisation']);
+          debugger;
+        this.router.navigate(['/register']);
       }
 }

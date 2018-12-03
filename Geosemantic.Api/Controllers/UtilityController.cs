@@ -1,6 +1,12 @@
-﻿using System.Reflection;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using AutoMapper;
 using Geosemantic.Common;
+using Geosemantic.Common.Enums;
+using Geosemantic.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Xen.Extensions;
 
 namespace Geosemantic.Api.Controllers
 {
@@ -18,6 +24,15 @@ namespace Geosemantic.Api.Controllers
         public string GetVersion()
         {
             return $"{settings.Environment} {Assembly.GetExecutingAssembly().GetName().Version}";
+        }
+
+
+        [HttpGet]
+        [Route("api/genders")]
+        public IEnumerable<LookUpViewModel> GetGender()
+        {
+            var data = EnumExtensions.GetEnumByDescriptions(typeof(GenderType)).OrderBy(i => i.Value);
+            return Mapper.Map<List<LookUpViewModel>>(data);
         }
     }
 }
