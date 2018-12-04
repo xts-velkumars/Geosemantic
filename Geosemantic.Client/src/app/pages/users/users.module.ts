@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MatButtonModule, MatChipsModule, MatFormFieldModule, MatIconModule, MatInputModule, MatPaginatorModule, MatRippleModule, MatSelectModule, MatSnackBarModule, MatSortModule,
+import {
+    MatButtonModule, MatChipsModule, MatFormFieldModule, MatIconModule, MatInputModule, MatPaginatorModule,
+    MatRippleModule, MatSelectModule, MatSnackBarModule, MatSortModule,
     MatTableModule, MatTabsModule ,MatCardModule,MatCheckboxModule,MatTooltipModule} from '@angular/material';
 
 import { FuseSharedModule } from '@fuse/shared.module';
 
 import { UsersComponent } from 'app/pages/users/users.component';
-import { UsersService } from 'app/pages/users/users.service';
+import { UserService } from "../../services/userdata.service";
 import { AuthGuard } from 'app/guards/auth.guard';
 const routes: Routes = [
     {
@@ -43,7 +45,7 @@ const routes: Routes = [
         FuseSharedModule
     ],
     providers   : [
-        UsersService
+        UserService
     ]
 })
 export class UsersModule

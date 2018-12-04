@@ -2,11 +2,11 @@ import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/internal/operators';
-import { AuthenticationService, UserSessionService, RegisterService, UtilityService } from 'app/services';
+import { AuthenticationService, UserSessionService, UtilityService } from 'app/services';
 import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations';
 import { Register } from 'app/models/register';
-import { UserService } from 'app/pages/user/user.service';
+import { UserService } from "../../services/userdata.service";
 import { Router } from '@angular/router';
 
 @Component({
@@ -32,7 +32,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
         private _formBuilder: FormBuilder,
         private authService: AuthenticationService,
         private userSessionService: UserSessionService,
-        private registerService: RegisterService,
         private utilityService: UtilityService,
         private userService: UserService,
     ) {
@@ -111,13 +110,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
     onRegister() {
         debugger;
         if (this.form.valid) {
-            this.registerService.newuserregister(this.form.value).subscribe(data => {
-                console.log("register-->"+data);
+            this.userService.saveUser(this.form.value).subscribe(data => {
                 this.router.navigate(["/awaitingapproval"]);
             });
         }
     }
-
     
 
     getGenderType(refresh) {

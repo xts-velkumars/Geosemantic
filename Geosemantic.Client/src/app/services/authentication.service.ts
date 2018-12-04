@@ -4,14 +4,13 @@ import { environment } from '../../environments/environment';
 import { UserSessionService } from "./usersession.service";
 import { DataService } from "./data.service";
 import { UserSession } from "../models";
-import { UserPageSessionService } from './userpagesession.service';
 
 import * as jwtDecode from "jwt-decode";
 import * as momenttz from 'moment-timezone';
 import * as _ from "lodash";
 
 import 'rxjs/add/operator/map';
-import { OrganisationPageSessionService } from './organisationpagesession.service';
+ 
 declare var require: any;  
 var timezone = require('../../assets/timezones.json');
 
@@ -25,20 +24,12 @@ export class AuthenticationService {
   constructor(
     private http: HttpClient,
     private dataService: DataService,
-    private sessionService: UserSessionService,
-    private organisationPageSessionService:OrganisationPageSessionService,
-    private userPageSessionService: UserPageSessionService) {
+    private sessionService: UserSessionService) {
       this.getTimeZones();
   }
 
-  login(username: string, password: string) {
+    login(username: string, password: string) {
 
-    // username='9600155567';
-    // password='reset@123';
-
-    // username='9789978997';
-    // password='bash@123';
-    
     const headers = new HttpHeaders(
       {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -99,11 +90,5 @@ export class AuthenticationService {
 
   clearCachedMenu() {
     this.dataService.clearCache();
-    this.organisationPageSessionService.destroy();
-    this.userPageSessionService.destroy();
   }
-
-  
-
-  
 }

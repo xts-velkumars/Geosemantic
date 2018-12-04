@@ -51,7 +51,17 @@ namespace Geosemantic.Api.Controllers
             return result.ToActionResult();
         }
 
+        [HttpPost]
+        [Authorize]
+        [Route("api/user/approved/{id}")]
+        public async Task<IActionResult> ApprovedUser(long id)
+        {
+            var result = await mediatr.Send(new ApproveuserCommand(id, user));
+            return result.ToActionResult();
+        }
+
         [HttpDelete]
+        [Authorize]
         [Route("api/user/{id}/delete")]
         public async Task<IActionResult> DeleteUser(long id)
         {

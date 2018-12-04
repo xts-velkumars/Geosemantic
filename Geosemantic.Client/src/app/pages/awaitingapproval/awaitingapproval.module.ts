@@ -5,7 +5,7 @@ import { MatButtonModule, MatChipsModule, MatFormFieldModule,MatCardModule, MatI
 
 import { FuseSharedModule } from '@fuse/shared.module';
 import { AwaitingApprovalComponent } from 'app/pages/awaitingapproval/awaitingapproval.component';
-import { UserService } from 'app/pages/user/user.service';
+import { UserService } from "../../services/userdata.service";
 import { AuthGuard } from 'app/guards/auth.guard';
 import { UtilityService } from '../../services';
 const routes: Routes = [

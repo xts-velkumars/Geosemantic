@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule ,HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
@@ -21,19 +21,18 @@ import { LayoutModule } from 'app/layout/layout.module';
 import { SharedModule } from "./shared/shared.module";
 // Import routing module
 import { AppRoutingModule } from './app.routing';
-import { AuthenticationService,UserSessionService,AlertService,HttpInterceptorService,DataService,UserPageSessionService,NavigationService,OrganisationPageSessionService,PageService,RegisterService} from 'app/services';
-import { UserService } from 'app/pages/user/user.service';
+import { AuthenticationService, UserSessionService, AlertService, HttpInterceptorService, DataService, NavigationService} from 'app/services';
+import { UserService } from "./services/userdata.service";
 import { AuthGuard } from './guards';
-import {OrganisationService} from '../app/pages/organisation/organisation.service';
+ 
 import { ConfirmationModalComponent } from './shared/component/modalcomponent/confirmationmodal.component';
 import { GenericMessageModalComponent } from './shared/component/modalcomponent/genericmessagemodal.component';
 import { SpinnerComponent } from 'app/shared/component/spinnercomponent/spinner.component';
-import { RoleModule } from './pages/role/role.module';
-import { RoleComponent } from './pages/role/role.component';
+ 
 
 const appRoutes: Routes = [
     {
-        path      : '**',
+        path: '**',
         redirectTo: 'sample'
     }
 ];
@@ -42,64 +41,51 @@ const appRoutes: Routes = [
     declarations: [
         AppComponent
     ],
-    imports     : [
+    imports: [
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
         AppRoutingModule,
         NgHttpLoaderModule,
         RouterModule.forRoot(appRoutes),
-
         TranslateModule.forRoot(),
-
         // Material moment date module
         MatMomentDateModule,
-
         // Material
         MatButtonModule,
         MatIconModule,
-
         // Fuse modules
         FuseModule.forRoot(fuseConfig),
         FuseProgressBarModule,
         FuseSharedModule,
         FuseSidebarModule,
-        // App modules
         LayoutModule,
         SharedModule,
-        RoleModule,
-        // Toast modules
         ToastrModule.forRoot({
             timeOut: 5000,
             positionClass: 'toast-top-right',
             preventDuplicates: true,
-          })
+        })
     ],
     providers: [AuthenticationService,
         AuthGuard,
         AlertService,
         UserSessionService,
         DataService,
-        PageService,
-        RegisterService,
-        OrganisationPageSessionService,
-        OrganisationService,
         NavigationService,
         UserService,
-        UserPageSessionService,{
-        provide: HTTP_INTERCEPTORS,
-        useClass: HttpInterceptorService,
-        multi: true
-      }],
-    bootstrap   : [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: HttpInterceptorService,
+            multi: true
+        }],
+    bootstrap: [
         AppComponent
     ],
     entryComponents: [
-        RoleComponent,
         SpinnerComponent,
         ConfirmationModalComponent,
         GenericMessageModalComponent]
 })
-export class AppModule
-{
+export class AppModule {
 }
