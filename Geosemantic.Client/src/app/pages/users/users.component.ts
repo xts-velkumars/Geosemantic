@@ -27,7 +27,7 @@ export class UsersComponent implements OnInit {
     users: any;
     roles: any;
     tabindex = 0;
-    usersColumns = ['select', 'fullName', 'mobileNumber', 'roleName','actions'];
+    usersColumns = ['firstName', 'lastName','emailAddress','mobileNumber', 'roleName','actions'];
     rolesColumns = ['selectRole','id', 'name', 'actions'];
     userSelection = new SelectionModel<any>(true, []);
     roleSelection = new SelectionModel<any>(true, []);
@@ -54,7 +54,7 @@ export class UsersComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.getUsers(false);     
+        this.getUsers(true);     
     }
 
     activeStatus(user) {
