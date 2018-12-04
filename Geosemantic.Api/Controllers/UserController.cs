@@ -53,10 +53,10 @@ namespace Geosemantic.Api.Controllers
 
         [HttpPost]
         [Authorize]
-        [Route("api/user/approved/{id}")]
-        public async Task<IActionResult> ApprovedUser(long id)
+        [Route("api/user/approved")]
+        public async Task<IActionResult> ApprovedUser([FromBody]ApproveuserCommand command)
         {
-            var result = await mediatr.Send(new ApproveuserCommand(id, user));
+            var result = await mediatr.Send(command);
             return result.ToActionResult();
         }
 

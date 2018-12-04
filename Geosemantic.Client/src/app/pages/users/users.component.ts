@@ -53,14 +53,7 @@ export class UsersComponent implements OnInit {
     ngOnInit(): void {
         this.getUsers(true);
     }
-
-    approvedUser(user) {
-        this.usersService.approved(user.id).subscribe(users => {
-            this.alertService.success("User Status Updated successfully");
-            this.refresh();
-        });
-    }
-
+    
 
     refresh() {
         this.getUsers(true);
@@ -91,12 +84,32 @@ export class UsersComponent implements OnInit {
         this.unsubscribeAll.complete();
     }
 
+    approvedUser(user) {
+        const dialogConfig = new MatDialogConfig();
+        dialogConfig.autoFocus = true;
+        dialogConfig.data = {
+            title: 'Approved Confirmation',
+            body: 'Are you sure you want to approved the user?',
+        };
+
+        const dialogRef = this.dialog.open(ConfirmationModalComponent, dialogConfig);
+
+        dialogRef.afterClosed().subscribe(result => {
+            if (result === true) {
+                this.usersService.approved(user).subscribe(users => {
+                    this.alertService.success("User Status Updated successfully");
+                    this.refresh();
+                });
+            }
+        });
+    }
+
     onDelete(user) {
         const dialogConfig = new MatDialogConfig();
         dialogConfig.autoFocus = true;
         dialogConfig.data = {
             title: 'Delete Confirmation',
-            body: 'Are you sure you want to delete the selected users?',
+            body: 'Are you sure you want to delete the user?',
         };
 
         const dialogRef = this.dialog.open(ConfirmationModalComponent, dialogConfig);

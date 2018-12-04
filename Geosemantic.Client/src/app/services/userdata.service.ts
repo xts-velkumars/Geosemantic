@@ -21,8 +21,8 @@ export class UserService {
         return this.dataService.delete('/api/user/' + id + '/delete');
     }
 
-    approved(id) {
-        return this.dataService.post('/api/user/approved/', id);
+    approved(user) {
+        return this.dataService.post('/api/user/approved', user);
     }
 
     saveUser(user) {
