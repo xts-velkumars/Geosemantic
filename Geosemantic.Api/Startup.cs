@@ -34,7 +34,8 @@ using Xen.Oauth.Extensions;
 using Xen.Query.Extensions;
 
 namespace Geosemantic.Api
-{
+{	
+	// Startup class
     public class Startup
     {
 
