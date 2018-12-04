@@ -3,10 +3,8 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import * as _ from 'lodash';
 
 import { FuseNavigationItem } from '@fuse/types';
-import { UserPageSessionService } from '../../../app/services/userpagesession.service';
 import { AuthenticationService } from '../../../app/services/authentication.service';
-import { PageService } from '../../../app/services/page.service';
-import { OrganisationPageSessionService } from 'app/services';
+ 
 
 @Injectable({
     providedIn: 'root'
@@ -31,10 +29,7 @@ export class FuseNavigationService
     /**
      * Constructor
      */
-    constructor( private pageService: PageService,
-        private userPageSessionService: UserPageSessionService,
-        private authService:AuthenticationService,
-        private organisationPageSessionService:OrganisationPageSessionService)
+    constructor(  private authService:AuthenticationService)
     {
         // Set the defaults
         this.onItemCollapsed = new Subject();
@@ -424,39 +419,5 @@ export class FuseNavigationService
         // Trigger the observable
         this._onNavigationItemRemoved.next(true);
     }
-
-    clearNav(){
-        this.unregister('main');
-        this.navigation =[]; 
-        this.userPageSessionService.destroy();
-    }
-
-    setNav(){
-        this.register('main', this.navigation);
-        this.setCurrentNavigation('main');
-    }
-
-    getNav(){
-        this.navigation =[];
-        if (this.userPageSessionService.isMenuCached()) {
-            this.navigation = this.userPageSessionService.getUserPages();
-            this.setNav();
-          } else {
-            let orgId=this.organisationPageSessionService.getOrganisationId();
-            this.pageService.getPageByOrganisationId(true,orgId).subscribe(data => {
-                    data.map(item => {
-                        return {
-                            id:item.name,
-                            title: item.name,
-                            type: 'item',
-                            url: item.url,
-                            icon:item.icon
-                        }
-                    }).forEach(item => this.navigation.push(item));
-                    this.userPageSessionService.create(this.navigation);
-                    this.setNav();
-                });
-        }
-       
-    }
+    
 }

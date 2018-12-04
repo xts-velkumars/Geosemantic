@@ -20,7 +20,7 @@
 
                 <!-- SEARCH -->
                 <div class="search-input-wrapper mx-xs-24 m-md-0" fxFlex="25" fxLayout="row" fxLayoutAlign="start center">
-                    <label for="search" class="mr-8">
+                    <label for="search" >
                         <mat-icon class="secondary-text">search</mat-icon>
                     </label>
                     <mat-form-field floatLabel="never" fxFlex="1 0 auto">
@@ -30,10 +30,7 @@
                 <!-- / SEARCH -->
             </div>
             <div class="title-bar button-bar" fxLayout="row" fxLayoutAlign="end end" *ngIf="tabindex==0" [@animate]="{value:'*',params:{delay:'100ms',y:'25px'}}">
-                <button mat-stroked-button color="primary" [routerLink]="'/user/0'" class="title-button fuse-white my-12 mt-sm-0">
-                    Add User
-                </button>                
-                <button mat-stroked-button color="primary" class="title-button fuse-white my-12 mt-sm-0" (click)="onRefresh()">
+                <button mat-stroked-button color="primary" class="title-button fuse-white my-12 mt-sm-0" (click)="refresh()">
                     Refresh
                 </button>
             </div>
@@ -43,69 +40,66 @@
 
         <!-- CONTENT CARD -->
         <div class="content-card">
-           
-                    <mat-table class="users-table" #table [dataSource]="userDataSource" matSort [@animateStagger]="{value:'50'}"
-                        fusePerfectScrollbar>
+            <mat-table class="users-table" #table [dataSource]="userDataSource" matSort [@animateStagger]="{value:'50'}"
+                       fusePerfectScrollbar>
+                <ng-container matColumnDef="firstName">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>First Name</mat-header-cell>
+                    <mat-cell *matCellDef="let users" fxHide fxShow.gt-sm>
+                        <p class="text-truncate">{{users.firstName}}</p>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="lastName">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Last Name</mat-header-cell>
+                    <mat-cell *matCellDef="let users" fxHide fxShow.gt-sm>
+                        <p class="text-truncate">{{users.lastName}}</p>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="emailAddress">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Email</mat-header-cell>
+                    <mat-cell *matCellDef="let users" fxHide fxShow.gt-sm>
+                        <p class="text-truncate">{{users.emailAddress}}</p>
+                    </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="mobileNumber">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Mobile No</mat-header-cell>
+                    <mat-cell *matCellDef="let users" fxHide fxShow.gt-sm>
+                        <p class="text-truncate">{{users.mobileNumber}}</p>
+                    </mat-cell>
+                </ng-container>
 
-                        <!-- Checkbox Column -->
-                        <!-- <ng-container matColumnDef="select">
-                            <mat-header-cell *matHeaderCellDef class="checkbox">
-                                <mat-checkbox (change)="$event ? userMasterToggle() : null" [checked]="userSelection.hasValue() && isAllSelectedUser()"
-                                    [indeterminate]="userSelection.hasValue() && !isAllSelectedUser()">
-                                </mat-checkbox>
-                            </mat-header-cell>
-                            <mat-cell *matCellDef="let row" class="checkbox">
-                                <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? userSelection.toggle(row) : null"
-                                    [checked]="userSelection.isSelected(row)">
-                                </mat-checkbox>
-                            </mat-cell>
-                        </ng-container> -->
-                        <ng-container matColumnDef="firstName">
-                            <mat-header-cell *matHeaderCellDef mat-sort-header>First Name</mat-header-cell>
-                            <mat-cell *matCellDef="let users" fxHide fxShow.gt-sm>
-                                <p class="text-truncate">{{users.firstName}}</p>
-                            </mat-cell>
-                        </ng-container>
-                        <ng-container matColumnDef="lastName">
-                            <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Last Name</mat-header-cell>
-                            <mat-cell *matCellDef="let users" fxHide fxShow.gt-sm>
-                                <p class="text-truncate">{{users.lastName}}</p>
-                            </mat-cell>
-                        </ng-container>
-                        <ng-container matColumnDef="emailAddress">
-                            <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Email</mat-header-cell>
-                            <mat-cell *matCellDef="let users" fxHide fxShow.gt-sm>
-                                <p class="text-truncate">{{users.emailAddress}}</p>
-                            </mat-cell>
-                        </ng-container>
-                        <ng-container matColumnDef="mobileNumber">
-                                <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Mobile No</mat-header-cell>
-                                <mat-cell *matCellDef="let users" fxHide fxShow.gt-sm>
-                                    <p class="text-truncate">{{users.mobileNumber}}</p>
-                                </mat-cell>
-                            </ng-container>
+                <ng-container matColumnDef="roleName">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header fxLayout.gt-xs="row" fxLayoutAlign="center center" fxLayoutAlign.gt-xs="start center">Role</mat-header-cell>
+                    <mat-cell *matCellDef="let users" fxLayout.gt-xs="row" fxLayoutAlign="center center" fxLayoutAlign.gt-xs="start center">
+                        <p class="text-truncate">{{users.roleName}}</p>
+                    </mat-cell>
+                </ng-container>
 
-                        <ng-container matColumnDef="roleName">
-                            <mat-header-cell *matHeaderCellDef mat-sort-header fxLayout.gt-xs="row" fxLayoutAlign="center center" fxLayoutAlign.gt-xs="start center">Role</mat-header-cell>
-                            <mat-cell *matCellDef="let users" fxLayout.gt-xs="row" fxLayoutAlign="center center" fxLayoutAlign.gt-xs="start center">
-                                <p class="text-truncate">{{users.roleName}}</p>
-                            </mat-cell>
-                        </ng-container>
+                <ng-container matColumnDef="actions">
+                    <mat-header-cell *matHeaderCellDef class="actions" fxHide fxShow.gt-sm>Status </mat-header-cell>
+                    <mat-cell *matCellDef="let users" class="button-bar actions" fxHide fxShow.gt-sm>
+
+                        <button mat-icon-button color="accent" matTooltip="approve" (click)="approvedUser(users)"
+                                [disabled]="users.status=='Approved'">
+                            {{ users.status=='Approved' ? "Approved"  : "Approve"}}
+                        </button>
                         
-                        <ng-container matColumnDef="actions" >
-                            <mat-header-cell *matHeaderCellDef class="actions" fxHide fxShow.gt-sm>Actions </mat-header-cell>
-                            <mat-cell *matCellDef="let users" class="button-bar actions" fxHide fxShow.gt-sm>
-                                
-                                <button mat-icon-button color="accent" matTooltip="approved" (click)="activeStatus(users)"
-                                    [disabled]="users.status=='Approved'"> Approved
-                                </button>
-                                
-                            </mat-cell>
-                        </ng-container>
-                        <mat-header-row *matHeaderRowDef="usersColumns; sticky:true"></mat-header-row>
-                        <mat-row *matRowDef="let users; columns: usersColumns;">
-                        </mat-row>
-                    </mat-table>
+
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="delete">
+                    <mat-header-cell *matHeaderCellDef class="delete" fxHide fxShow.gt-sm>Delete </mat-header-cell>
+                    <mat-cell *matCellDef="let users"  fxHide fxShow.gt-sm>
+                        <button mat-icon-button color="warn" (click)="onDelete(users)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="usersColumns; sticky:true"></mat-header-row>
+                <mat-row *matRowDef="let users; columns: usersColumns;">
+                </mat-row>
+            </mat-table>
                 
             <mat-paginator *ngIf="tabindex==0" #paginator [length]="userDataSource!=null&&userDataSource.filteredData.length"
                 [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">

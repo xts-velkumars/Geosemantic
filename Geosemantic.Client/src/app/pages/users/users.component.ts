@@ -6,14 +6,13 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseUtils } from '@fuse/utils';
 import { takeUntil } from 'rxjs/internal/operators';
-import { UsersService } from 'app/pages/users/users.service';
-import { OrganisationPageSessionService } from '../../services/organisationpagesession.service';
-import {MatDialog, MatDialogConfig,MatDialogRef} from "@angular/material";
+ 
+ 
+import { MatDialog, MatDialogConfig, MatDialogRef } from "@angular/material";
 import { ConfirmationModalComponent } from '../../shared/component/modalcomponent/confirmationmodal.component';
-import { RoleComponent } from '../role/role.component';
 import { FormGroup } from '@angular/forms';
-import { RoleService } from '../role/role.service';
 import { AlertService } from '../../services';
+import { UserService } from '../../services/userdata.service';
 
 @Component({
     selector: 'users-dashboard',
@@ -27,11 +26,11 @@ export class UsersComponent implements OnInit {
     users: any;
     roles: any;
     tabindex = 0;
-    usersColumns = ['firstName', 'lastName','emailAddress','mobileNumber', 'roleName','actions'];
-    rolesColumns = ['selectRole','id', 'name', 'actions'];
+    usersColumns = ['firstName', 'lastName', 'emailAddress', 'mobileNumber', 'roleName', 'actions', 'delete'];
+    rolesColumns = ['selectRole', 'id', 'name', 'actions'];
     userSelection = new SelectionModel<any>(true, []);
     roleSelection = new SelectionModel<any>(true, []);
-    confirmDialogRef: MatDialogRef<RoleComponent>;
+    
     dialogRef: any;
 
     @ViewChild(MatPaginator)
@@ -45,24 +44,29 @@ export class UsersComponent implements OnInit {
 
     private unsubscribeAll: Subject<any>;
 
-    constructor(private usersService: UsersService,
-        private organisationPageSessionService:OrganisationPageSessionService,
+    constructor(private usersService: UserService,
         private dialog: MatDialog,
-        private roleService: RoleService,
-        private alertService: AlertService,) {
+        private alertService: AlertService, ) {
         this.unsubscribeAll = new Subject();
     }
 
     ngOnInit(): void {
-        this.getUsers(true);     
+        this.getUsers(true);
     }
 
-    activeStatus(user) {
-        user.isActive = !user.isActive ? true : false;
+    approvedUser(user) {
+        this.usersService.approved(user.id).subscribe(users => {
+            this.alertService.success("User Status Updated successfully");
+            this.refresh();
+        });
+    }
+
+
+    refresh() {
+        this.getUsers(true);
     }
 
     getUsers(refresh) {
-        
         this.usersService.getUsers(refresh).subscribe(users => {
             this.users = users;
             this.userDataSource = new FilesUserDataSource(this.paginator, this.sort, this.users);
@@ -81,103 +85,31 @@ export class UsersComponent implements OnInit {
         });
     }
 
-    
+
     ngOnDestroy(): void {
         this.unsubscribeAll.next();
         this.unsubscribeAll.complete();
     }
 
-    isAllSelectedUser() {
-        const numSelectedUser = this.userSelection.selected.length;
-        const numRowsUser = this.userDataSource.filteredData.length;
-        return numSelectedUser === numRowsUser;
-    }
-
-    isUserDeleteDisable() {
-        return this.userSelection.selected.length == 0;
-    }
-    userMasterToggle() {
-        this.isAllSelectedUser() ?
-            this.userSelection.clear() :
-            this.userDataSource.filteredData.forEach(row => this.userSelection.select(row));
-    }
-
-    isAllSelectedRole() {
-        const numSelected = this.roleSelection.selected.length;
-        const numRows = this.roleDataSource.filteredData.length;
-        return numSelected === numRows;
-    }
-
-    isRoleDeleteDisable() {
-        return this.roleSelection.selected.length == 0;
-    }
-    roleMasterToggle() {
-        this.isAllSelectedRole() ?
-            this.roleSelection.clear() :
-            this.roleDataSource.filteredData.forEach(row => this.roleSelection.select(row));
-    }
-
-    onTabClick(event: MatTabChangeEvent) {
-        console.log('index => ', event.index);
-        this.tabindex = event.index;
-        console.log('tab => ', event.tab.textLabel);
-    }
-
-    delete() {
-
+    onDelete(user) {
         const dialogConfig = new MatDialogConfig();
-
         dialogConfig.autoFocus = true;
         dialogConfig.data = {
             title: 'Delete Confirmation',
             body: 'Are you sure you want to delete the selected users?',
         };
 
-
         const dialogRef = this.dialog.open(ConfirmationModalComponent, dialogConfig);
 
         dialogRef.afterClosed().subscribe(result => {
             if (result === true) {
-             
-            }
-          });    
-    }
-
-    actionRole(actionName,id): void
-    {
-        this.dialogRef = this.dialog.open(RoleComponent, {
-            panelClass: 'contact-form-dialog',
-            data      : {
-                id: id,
-                action : actionName,
+                this.usersService.deleteUser(user.id).subscribe(users => {
+                    this.alertService.success("User Deleted successfully");
+                    this.refresh();
+                });
             }
         });
-
-        this.dialogRef.afterClosed()
-            .subscribe(response => {
-                if ( !response )
-                {
-                    return;
-                }
-                const actionType: string = response[0];
-                const roleForm: FormGroup = response[1];
-                switch ( actionType )
-                {
-                    case 'save':
-                        roleForm.value.organisationId=this.organisationPageSessionService.getOrganisationId();
-                        this.roleService.saveRole(roleForm.value).subscribe(data => {
-                        this.alertService.success("Role saved successfully");                        
-                        });
-                        break;
-                    // case 'delete':
-                    //     this.deleteContact(contact);
-                    //     break;
-                }
-            });
     }
-
-    
-
 }
 
 export class FilesUserDataSource extends DataSource<any>
@@ -251,14 +183,17 @@ export class FilesUserDataSource extends DataSource<any>
                 case 'emailAddress':
                     [propertyA, propertyB] = [a.emailAddress, b.emailAddress];
                     break;
-                case 'fullName':
-                    [propertyA, propertyB] = [a.fullName, b.fullName];
+                case 'firstName':
+                    [propertyA, propertyB] = [a.firstName, b.firstName];
+                    break;
+                case 'lastName':
+                    [propertyA, propertyB] = [a.lastName, b.lastName];
                     break;
                 case 'mobileNumber':
                     [propertyA, propertyB] = [a.mobileNumber, b.mobileNumber];
                     break;
-                case 'name':
-                    [propertyA, propertyB] = [a.name, b.name];
+                case 'roleName':
+                    [propertyA, propertyB] = [a.roleName, b.roleName];
                     break;
             }
 
