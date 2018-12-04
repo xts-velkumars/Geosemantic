@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Mail;
-using System.Text;
+﻿using System.Net.Mail;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -52,8 +49,8 @@ namespace Geosemantic.Command.User
 
             mailMessage.Attachments.Add(templates.GetLogoAttachment());
 
-            await mediatr.Send(new SendEmailWithSendGridCommand(command, mailMessage));
-            //await mediatr.Send(new SendEmailCommand(command, mailMessage));
+          //  await mediatr.Send(new SendEmailWithSendGridCommand(command, mailMessage));
+             await mediatr.Send(new SendEmailCommand(command, mailMessage));
         }
     }
 }
