@@ -2,12 +2,12 @@ export class Register {
   id: number;
   firstName: string;
   lastName: string;
-  mobileNumber: string;
-  email: string;
-  dateOfBirth: Date;
-  genderType: number;
-  roleId: number;
+  emailAddress: string;
   password: string;
-  passwordConfirm: string;
+  confirmPassword: string;
+  genderType: number;
+  mobileNumber: string;
+  dateOfBirth: string;
+  roleId: number;
 }
 

@@ -7,6 +7,7 @@ import { FuseConfigService } from '@fuse/services/config.service';
 import { fuseAnimations } from '@fuse/animations';
 import { Register } from 'app/models/register';
 import { UserService } from 'app/pages/user/user.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'register',
@@ -26,7 +27,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     private _unsubscribeAll: Subject<any>;
 
     constructor(
-
+        private router: Router,
         private _fuseConfigService: FuseConfigService,
         private _formBuilder: FormBuilder,
         private authService: AuthenticationService,
@@ -76,10 +77,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
             dateOfBirth: ['', Validators.required],
             genderType: ['', Validators.required],
             roleId: ['', Validators.required],
-            organisationId: ['', null],
             id: [this.id, null],
-            name: ['', Validators.required],
-            email: ['', [Validators.required, Validators.email]],
             password: ['', Validators.required],
             passwordConfirm: ['', [Validators.required, confirmPasswordValidator]],
 
@@ -112,11 +110,15 @@ export class RegisterComponent implements OnInit, OnDestroy {
  */
     onRegister() {
         debugger;
-
-        this.registerService.newuserregister(this.register).subscribe(() => {
-
-        });
+        if (this.form.valid) {
+            this.registerService.newuserregister(this.register).subscribe(data => {
+                console.log("register-->"+data);
+                this.router.navigate(["/login"]);
+            });
+        }
     }
+
+    
 
     getGenderType(refresh) {
         this.utilityService.getGenderType(refresh).subscribe(genderTypes => {

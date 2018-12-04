@@ -47,6 +47,9 @@ export const appRoutes: Routes = [
         path        : 'organisation',
         loadChildren: './pages/organisation/organisation.module#OrganisationModule'
     },{
+        path        : 'newsletter',
+        loadChildren: './pages/newsletter/newsletter.module#NewsletterModule'
+    },{
         path      : '**',
         redirectTo: 'dashboard'
     }

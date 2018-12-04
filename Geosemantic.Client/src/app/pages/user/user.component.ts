@@ -6,6 +6,7 @@ import { AlertService } from 'app/services/alert.service';
 import { UserService } from 'app/pages/user/user.service';
 import { NavigationService } from 'app/services/navigation.service';
 import { UtilityService, OrganisationPageSessionService } from '../../services';
+import { Register } from 'app/models/register';
 
 @Component({
     selector     : 'user-dashboard',
@@ -23,6 +24,7 @@ export class UserComponent implements OnInit
     action;
     genderTypes:any;
     roleTypes:any;
+    register :Register;
     private orgId=this.organisationPageSessionService.getOrganisationId();
     
    
@@ -34,9 +36,10 @@ export class UserComponent implements OnInit
         private userService: UserService, private formBuilder: FormBuilder
     )
     {
+       
        this.routeParams = route.snapshot.params;
        this.id=this.routeParams.id;
-       this.cardTitle=this.id==0?"Add":"Edit";
+       this.cardTitle=this.id==0?"User Add":"User Edit";
        this.action=this.id==0?"Add":"Save";
     }
     
@@ -50,12 +53,14 @@ export class UserComponent implements OnInit
             dateOfBirth : ['', Validators.required],
             genderType:['', Validators.required],
             roleId:['', Validators.required],
+            password: ['', Validators.required],
+            passwordConfirm: ['', [Validators.required, confirmPasswordValidator]],
             organisationId:['', null],
             id:[this.id,null]
         });
         this.getGenderType(false);
         this.getRoles(true);
-        this.getUser(true);
+        //this.getUser(true);
        
     }
 
@@ -81,8 +86,9 @@ export class UserComponent implements OnInit
 
       save() {
         if (this.form.valid) {
-          this.form.value.organisationId=this.organisationPageSessionService.getOrganisationId();
-          this.userService.saveUser(this.form.value).subscribe(data => {
+          debugger;
+          this.userService.saveUser(this.register).subscribe(data => {
+              debugger;
             this.alertService.success("User saved successfully");
             this.navigationService.goToUser();
           });

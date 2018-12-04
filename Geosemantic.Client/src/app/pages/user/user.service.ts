@@ -21,7 +21,7 @@ export class UserService {
     }
 
     saveUser(user) {
-        return this.dataService.post('/api/user', user).map(response => {
+        return this.dataService.post('/api/users', user).map(response => {
             this.dataService.clearRouteCache(this.getUserRoute);
             return response;
         });

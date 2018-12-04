@@ -1,20 +1,28 @@
 <div id="register" class="page-layout carded fullwidth inner-scroll">
-
+        <div class="content-card">
+                <div class="card-header" fxLayout="row" fxLayoutAlign="start center">
+                    <!-- <span class="card-text h2" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                        
+                    </span> -->
+                </div>
+        </div>
     <div class="top-bg accent"></div>
     <div class="center">
         <div class="header accent" fxLayout="column" fxLayoutAlign="center start">
             <div class="title-bar" fxLayout="column" fxLayoutAlign="top start" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
                 <div class="logo my-12 m-sm-0 pt-14" fxLayout="row" fxLayoutAlign="start center">
-                    <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
-                        Register New User
-                    </span>
+                    <img class="logo-icon" src="assets/images/logos/icon_react_bw_white_48.png">
+                    <span class="logo-text secondary-text"><strong>Geosemantic</strong></span>
+                    <!-- <span class="logo-text h2" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                            Geosemantic
+                    </span> -->
                 </div>
             </div>
         </div>
         <div class="content-card">
-            <div class="card-header" fxLayout="row" fxLayoutAlign="start center">
-                <span class="card-text h2" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
-                    {{cardTitle}}
+            <div class="card-header" fxLayout="row" fxLayoutAlign="center">
+                <span class="card-text h2" [@animate]="{value:'*',params:{delay:'100ms',x:'250px'}}">
+                        Register New User
                 </span>
             </div>
             <div class="info-content">
@@ -22,18 +30,18 @@
                     fxFlex="1 0 auto" fusePerfectScrollbar>
                     <div fxLayout="column" fxLayout.gt-xs="row" fxFlex="1 0 auto" fxLayoutGap="20px">
                         <mat-form-field fxFlex="50" >
-                            <input matInput placeholder="First name" formControlName="firstName" required>
+                            <input matInput placeholder="First name" formControlName="firstName" required [(ngModel)]="register.firstName">
                             <mat-error>First Name is required!</mat-error>
                         </mat-form-field>
                         <mat-form-field fxFlex="50" >
-                            <input matInput placeholder="Last name" formControlName="lastName" required>
+                            <input matInput placeholder="Last name" formControlName="lastName" required [(ngModel)]="register.lastName">
                             <mat-error>Last Name is required</mat-error>
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="column" fxLayout.gt-xs="row" fxFlex="1 0 auto" fxLayoutGap="20px">
                         <mat-form-field fxFlex="50">
-                            <input matInput placeholder="Mobile Number" onlyNumber formControlName="mobileNumber" maxlength="10" required>
+                            <input matInput placeholder="Mobile Number" onlyNumber formControlName="mobileNumber" maxlength="10" [(ngModel)]="register.mobileNumber" required>
                             <mat-error *ngIf="form.get('mobileNumber').hasError('required')">
                                 Mobile Numbe is required
                             </mat-error>
@@ -43,7 +51,7 @@
                         </mat-form-field>
 
                         <mat-form-field fxFlex="50">
-                            <input matInput placeholder="Email" formControlName="emailAddress">
+                            <input matInput placeholder="Email" formControlName="emailAddress" [(ngModel)]="register.emailAddress">
                             <mat-error *ngIf="form.get('emailAddress').hasError('required')">
                                 Email is required
                             </mat-error>
@@ -55,13 +63,13 @@
 
                     <div fxLayout="column" fxLayout.gt-xs="row" fxFlex="1 0 auto" fxLayoutGap="20px">
                         <mat-form-field fxFlex="50">
-                            <input matInput [matDatepicker]="picker" placeholder="Date of birth" required formControlName="dateOfBirth">
+                            <input matInput [matDatepicker]="picker" placeholder="Date of birth" required formControlName="dateOfBirth" [(ngModel)]="register.dateOfBirth">
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-error>Date of birth is required</mat-error>
                             <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field fxFlex="50">
-                            <mat-select placeholder="Gender" formControlName="genderType" required>
+                            <mat-select placeholder="Gender" formControlName="genderType" required [(ngModel)]="register.genderType">
                                 <mat-option *ngFor="let gender of genderTypes" [value]="gender.key">
                                     {{gender.value}}
                                 </mat-option>
@@ -72,7 +80,7 @@
 
                     <div fxLayout="column" fxLayout.gt-xs="row" fxFlex="1 0 auto" fxLayoutGap="20px">
                         <mat-form-field fxFlex="50">
-                            <mat-select placeholder="Role" formControlName="roleId" required>
+                            <mat-select placeholder="Role" formControlName="roleId" required [(ngModel)]="register.roleId">
                                 <mat-option *ngFor="let role of roleTypes" [value]="role.key">
                                     {{role.value}}
                                 </mat-option>
@@ -89,7 +97,7 @@
                             </mat-error>
                         </mat-form-field>
                         <mat-form-field fxFlex="50">
-                            <input matInput type="password" placeholder="Password (Confirm)" formControlName="passwordConfirm" [(ngModel)]="register.passwordConfirm">
+                            <input matInput type="password" placeholder="Password (Confirm)" formControlName="passwordConfirm" [(ngModel)]="register.confirmPassword">
                             <mat-error *ngIf="form.get('passwordConfirm').hasError('required')">
                                 Password confirmation is required
                             </mat-error>
@@ -102,12 +110,12 @@
 
                     <div fxLayout="row" class="button-bar" fxLayoutAlign="end center">
                         <button mat-raised-button color="warn" [routerLink]="'/login'">
-                            <!-- <mat-icon class="material-icons md-36">remove</mat-icon> -->
+                            <mat-icon class="material-icons md-36">remove</mat-icon>
                             Cancel
                         </button>
 
-                        <button mat-raised-button color="accent" (click)="save()">
-                            <!-- <mat-icon class="material-icons md-36">save</mat-icon> -->
+                        <button mat-raised-button color="accent" (click)="onRegister()">
+                            <mat-icon class="material-icons md-36">save</mat-icon>
                             Save
                         </button>
                     </div>

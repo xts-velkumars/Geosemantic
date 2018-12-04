@@ -82,42 +82,15 @@ export class LoginComponent implements OnInit
         if (this.loginForm.valid) {
             debugger;
             this.authService.login(this.vm.username, this.vm.password).subscribe(() => {
-
-               // this.organisation();
                this.router.navigate([this.returnUrl]);
             });
         }
         else {
-          //this.validateAllFormFields(this.loginForm);
+         // this.validateAllFormFields(this.loginForm);
         }
       }
-      loginStatic(username,password){
-        this.authService.login(username,password).subscribe(() => {
-            this.organisation();
-        });
-      }
+      
+      
 
-      organisation(){
-          let isMultipleOrganisation=this.userSessionService.isMultipleOrganisation();
-        if (!isMultipleOrganisation){
-            let userId=this.userSessionService.userId();
-                this.organisationService.getOrganisation(userId,true).subscribe(organisation=>{
-                    this.organisationPageSessionService.create(organisation[0]);
-                    this.fuseNavigationService.getNav();
-                    this.proceedDashboard();
-                });
-        }else{
-            this.proceedOrganisation();
-        }
-      }
-
-      proceedDashboard() {
-          debugger;
-        
-      }
-
-      proceedOrganisation() {
-          debugger;
-        this.router.navigate(['/organisation']);
-      }
+      
 }

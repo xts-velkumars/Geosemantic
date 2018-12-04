@@ -1,0 +1,46 @@
+@import "src/@fuse/scss/fuse";
+
+:host {
+
+    #user {
+
+        > .center {
+
+            > .header {
+
+                
+
+                .search-input-wrapper {
+                    max-width: 480px;
+                }
+                
+            }
+        }
+    }
+    .content-card {
+        .info-content{
+            flex: 1 1 auto;
+            max-width: 100%;
+        }
+    }
+    .top-content{
+        height: 80px !important;
+        min-height: 80px !important;
+        max-height: 80px !important;
+    }
+    .card-header{
+        height: 60px;
+        background-color: #eee;
+    }
+    .card-text{
+        margin-left: 15px;
+    }
+
+    .mat-form-field{
+        margin-left: 15px; 
+    }
+    .user-from-buttons {
+        margin-left: 16px;
+    }
+
+}

@@ -9,6 +9,7 @@ import { SpinnerComponent } from "./shared/component/spinnercomponent/spinner.co
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Spinkit } from 'ng-http-loader';
+import { navigation } from 'app/navigation/navigation';
 
 @Component({
     selector   : 'app',
@@ -21,7 +22,7 @@ export class AppComponent implements OnInit, OnDestroy
     private unsubscribeAll: Subject<any>;
     spinnerComponent = SpinnerComponent;
     public spinkit = Spinkit;
-
+    navigation: any;
     constructor(
         @Inject(DOCUMENT) private document: any,
         private fuseConfigService: FuseConfigService,
@@ -32,6 +33,14 @@ export class AppComponent implements OnInit, OnDestroy
     )
     {
        
+        // Get default navigation
+        this.navigation = navigation;
+
+        // Register the navigation to the service
+        this.fuseNavigationService.register('main', this.navigation);
+
+        // Set the main navigation as our current navigation
+        this.fuseNavigationService.setCurrentNavigation('main');
         // Add is-mobile class to the body if the platform is mobile
         if ( this.platform.ANDROID || this.platform.IOS )
         {

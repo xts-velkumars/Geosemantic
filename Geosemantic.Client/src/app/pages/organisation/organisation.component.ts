@@ -68,9 +68,9 @@ export class OrganisationComponent implements OnInit
 
     orginizationChange(e,organisation) 
     {
-        this.organisationPageSessionService.create(organisation);
-        this.fuseNavigationService.clearNav();
-        this.fuseNavigationService.getNav();
+        //this.organisationPageSessionService.create(organisation);
+       // this.fuseNavigationService.clearNav();
+        //this.fuseNavigationService.getNav();
         this.proceedDashboard();
     }
     proceedDashboard() {

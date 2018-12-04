@@ -1,0 +1,47 @@
+<div id="awaitingapproval" class="page-layout carded fullwidth inner-scroll">
+    <div class="content-card">
+        <div class="card-header" fxLayout="row" fxLayoutAlign="start center">
+        </div>
+    </div>
+    <div class="top-bg accent"></div>
+    <div class="center">
+        <div class="header accent" fxLayout="column" fxLayoutAlign="center start">
+            <div class="title-bar" fxLayout="column" fxLayoutAlign="top start" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+                <div class="logo my-12 m-sm-0 pt-14" fxLayout="row" fxLayoutAlign="start center">
+                    <img class="logo-icon" src="assets/images/logos/icon_react_bw_white_48.png">
+                    <span class="logo-text secondary-text"><strong>Geosemantic</strong></span>
+                </div>
+            </div>
+        </div>
+        <div class="content-card">
+            <div class="info-content">
+                <form novalidate name="form" [formGroup]="form" class="p-24 mr-24" fxLayout="column" fxLayoutAlign="center" fxFlex="1 0 auto"
+                    fusePerfectScrollbar>
+                    <div>
+                        <mat-card>
+
+                            <mat-card-header>
+                                <div mat-card-avatar fxLayout="row" fxLayoutAlign="start center">
+                                    <img src="assets/images/avatars/profile.jpg" class="mat-avatar avatar" alt="{{users.fullName}}" fxHide fxShow.gt-sm/>
+
+                                </div>
+
+                                <mat-card-title>Profile Waiting For Approval </mat-card-title>
+                            </mat-card-header>
+                            <mat-card-content>
+                                Thank you for patience! Your profile waiting for approval, you will be notified through email soon
+                            </mat-card-content>
+                            <div class="button-bar" fxLayout="row" fxLayoutAlign="left center">
+                                <button mat-raised-button color="accent" aria-label="LOG IN" (click)="login()">
+                                    LOGIN
+                                </button>
+                            </div>
+                        </mat-card>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
