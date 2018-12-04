@@ -11,7 +11,7 @@ import { UtilityService } from '../../services';
 const routes: Routes = [
     {
         path     : '**',
-        component: AwaitingApprovalComponent,canActivate: [AuthGuard]
+        component: AwaitingApprovalComponent
     }
 ];
 

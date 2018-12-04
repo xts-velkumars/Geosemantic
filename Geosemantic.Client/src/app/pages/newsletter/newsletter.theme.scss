@@ -1,10 +1,10 @@
+@mixin newsletter-theme($theme) {
 
-    @import "src/@fuse/scss/fuse";
     $background: map-get($theme, background);
     $foreground: map-get($theme, foreground);
 
     // Search Modern
-    search-modern {
+    newsletter {
 
         .header {
 
@@ -35,4 +35,5 @@
             }
         }
     }
+}
 

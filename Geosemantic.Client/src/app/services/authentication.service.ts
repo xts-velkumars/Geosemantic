@@ -49,15 +49,19 @@ export class AuthenticationService {
 
     return this.http.post<any>(this.baseUrl + "/api/token", data, { headers: headers })
     .map(user => {
+      debugger;
       if (user && user.access_token) {
          this.clearCachedMenu();
          const decodedToken = jwtDecode(user.access_token);
          this.sessionData.authToken = user.access_token;
          this.sessionData.userId = decodedToken["user.id"];
          this.sessionData.userFullName = decodedToken["user.fullname"];
-         this.sessionData.isMultipleOrganisation = decodedToken["referrence1"];
+         this.sessionData.userStatus = decodedToken["referrence1"];
+         this.sessionData.userroleid= decodedToken["user.roleid"];
+         this.sessionData.userrolename= decodedToken["user.rolename"];
          this.sessionService.create(this.sessionData);
       }
+      
       return user;
     });
   }

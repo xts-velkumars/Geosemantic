@@ -86,8 +86,7 @@ export class UserComponent implements OnInit
 
       save() {
         if (this.form.valid) {
-          debugger;
-          this.userService.saveUser(this.register).subscribe(data => {
+          this.userService.saveUser(this.form.value).subscribe(data => {
               debugger;
             this.alertService.success("User saved successfully");
             this.navigationService.goToUser();

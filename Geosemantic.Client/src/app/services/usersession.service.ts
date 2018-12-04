@@ -46,6 +46,11 @@ export class UserSessionService {
     return jsonData == null ? 0 : +JSON.parse(jsonData).roleId;
   }
 
+  userStatus() {
+    const jsonData = localStorage.getItem(this.localStorageSessionKey);
+    return jsonData == null ? '' : JSON.parse(jsonData).userStatus;
+  }
+
  
 
   isMultipleOrganisation():boolean {

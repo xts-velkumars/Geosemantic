@@ -1,5 +1,5 @@
 export const environment = {
-    apiBaseUrl: 'http://192.168.0.226:7002',
+    apiBaseUrl: 'http://192.168.0.226:11100',
     production: false,
     environment: 'Local',
     dateFormat: 'DD-MM-YYYY',
