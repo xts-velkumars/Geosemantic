@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xen.Entity.Entities;
+﻿using Xen.Entity.Entities;
 
 namespace Geosemantic.Domain.Entities
 {

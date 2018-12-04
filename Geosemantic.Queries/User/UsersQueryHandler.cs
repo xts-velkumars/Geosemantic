@@ -24,12 +24,10 @@ namespace Geosemantic.Queries.User
 
         public async Task<IEnumerable<UsersViewModel>> Handle(UsersQuery request, CancellationToken cancellationToken)
         {
-            //var today = DateTime.Now;
-            //bool isWeekEnd = today.IsWeekend();
-
             logger.LogInformation("Pulling user information");
 
             var users = await context.User
+                .Include(i=>i.Role)
                 .AsNoTracking()
                 .ToListAsync(cancellationToken);
 
