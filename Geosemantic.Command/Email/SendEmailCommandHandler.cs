@@ -23,7 +23,7 @@ namespace Geosemantic.Command.Email
             using (var smtp = new SmtpClient(emailSettings.SmtpServer)
             {
                 Port =  emailSettings.SmtpPort,
-                EnableSsl = true
+                EnableSsl = emailSettings.SmtpEnableSsl
             })
             {
                 smtp.Credentials = new NetworkCredential(emailSettings.SmtpUsername, emailSettings.SmtpPassword);

@@ -29,7 +29,7 @@ namespace Geosemantic.Command.Login
             var hashedPassword = cmd.Password.ToPasswordHash();
 
             var loginResult = await context.User
-                .Include(i=>i.Role)
+                .Include(i => i.Role)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(i =>
                     string.Equals(i.EmailAddress, userName, StringComparison.CurrentCultureIgnoreCase)
@@ -39,11 +39,7 @@ namespace Geosemantic.Command.Login
             if (loginResult == null)
                 return new FailureResult<IList<Claim>>("Invalid username or password");
 
-            var agentStatus = string.Empty;
-
-            if (loginResult.RoleName ==  Common.Constants.RoleConstants.User)
-                agentStatus = IsUserApproved(loginResult);
-
+            var agentStatus = IsUserApproved(loginResult);
 
             var claims = new List<Claim>
             {
@@ -62,7 +58,7 @@ namespace Geosemantic.Command.Login
         {
             var agentStatus = UserStatusType.WaitingForApproval.ToString();
 
-           
+
             switch (user.UserStatusType)
             {
                 case UserStatusType.WaitingForApproval:

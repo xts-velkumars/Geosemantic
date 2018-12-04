@@ -4,6 +4,7 @@ using Geosemantic.Command.User;
 using Geosemantic.Domain.Entities;
 using Geosemantic.ViewModel;
 using Xen.Entity.Entities;
+using Xen.Extensions;
 
 namespace Geosemantic.Api
 {
@@ -45,6 +46,7 @@ namespace Geosemantic.Api
         private static void CommandToEntityMap(IMapperConfigurationExpression cfg)
         {
             cfg.CreateMap<SaveUserCommand, User>()
+                .ForMember(dest => dest.Password, src => src.MapFrom(e => e.Password.ToPasswordHash()))
                 .ForMember(dest => dest.UserSystemType, src => src.Ignore())
                 .ForMember(dest => dest.UserStatusType, src => src.Ignore())
                 .ForMember(dest => dest.Role, src => src.Ignore())
