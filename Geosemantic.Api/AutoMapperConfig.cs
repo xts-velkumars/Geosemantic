@@ -36,12 +36,17 @@ namespace Geosemantic.Api
 
             cfg.CreateMap<Role, RolesViewModel>();
 
+            cfg.CreateMap<Page, PagesViewModel>();
+
+            cfg.CreateMap<SendUserRegistrationEmailCommand, UserConfirmationEmailViewModel>();
+
         }
 
         private static void CommandToEntityMap(IMapperConfigurationExpression cfg)
         {
             cfg.CreateMap<SaveUserCommand, User>()
                 .ForMember(dest => dest.UserSystemType, src => src.Ignore())
+                .ForMember(dest => dest.UserStatusType, src => src.Ignore())
                 .ForMember(dest => dest.Role, src => src.Ignore())
                 .IgnoreXenMessageProperties();
 

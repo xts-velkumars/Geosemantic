@@ -12,21 +12,21 @@
 
             <form name="loginForm" [formGroup]="loginForm" novalidate>
 
-                <mat-form-field appearance="outline">
+                <mat-form-field >
                     <mat-label>Email</mat-label>
-                    <input matInput formControlName="mobileNumber">
+                    <input matInput formControlName="email" [(ngModel)]="vm.username">
                     <mat-icon matSuffix class="secondary-text">mail</mat-icon>
-                    <mat-error *ngIf="loginForm.get('mobileNumber').hasError('required')">
-                        Username is required
+                    <mat-error *ngIf="loginForm.get('email').hasError('required')">
+                        Email is required
                     </mat-error>
-                    <mat-error *ngIf="!loginForm.get('mobileNumber').hasError('required') && loginForm.get('mobileNumber').hasError('maxlength')">
-                        Username should not exceed 10 character
+                    <mat-error *ngIf="!loginForm.get('email').hasError('required') && loginForm.get('email').hasError('maxlength')">
+                        Please enter a valid email address
                       </mat-error>
                 </mat-form-field>
 
-                <mat-form-field appearance="outline">
+                <mat-form-field >
                     <mat-label>Password</mat-label>
-                    <input matInput type="password" formControlName="password">
+                    <input matInput type="password" formControlName="password" [(ngModel)]="vm.password">
                     <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
                     <mat-error>
                         Password is required

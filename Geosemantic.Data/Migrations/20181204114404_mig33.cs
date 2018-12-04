@@ -115,13 +115,14 @@ namespace Geosemantic.Data.Migrations
                     LastChangeTs = table.Column<DateTime>(nullable: true),
                     LastChangeUserId = table.Column<string>(maxLength: 50, nullable: true),
                     StatusType = table.Column<byte>(nullable: false),
-                    EmailAddress = table.Column<string>(maxLength: 25, nullable: false),
+                    EmailAddress = table.Column<string>(maxLength: 50, nullable: false),
                     Password = table.Column<string>(nullable: true),
-                    FirstName = table.Column<string>(maxLength: 25, nullable: false),
-                    LastName = table.Column<string>(maxLength: 25, nullable: false),
+                    FirstName = table.Column<string>(maxLength: 50, nullable: false),
+                    LastName = table.Column<string>(maxLength: 50, nullable: false),
                     MobileNumber = table.Column<string>(maxLength: 10, nullable: false),
                     GenderType = table.Column<byte>(nullable: true),
                     UserSystemType = table.Column<byte>(nullable: false),
+                    UserStatusType = table.Column<byte>(nullable: false),
                     RoleId = table.Column<long>(nullable: false)
                 },
                 constraints: table =>

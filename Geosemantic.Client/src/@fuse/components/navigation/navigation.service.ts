@@ -11,8 +11,7 @@ import { OrganisationPageSessionService } from 'app/services';
 @Injectable({
     providedIn: 'root'
 })
-export class FuseNavigationService
-{
+export class FuseNavigationService {
     onItemCollapsed: Subject<any>;
     onItemCollapseToggled: Subject<any>;
 
@@ -31,11 +30,10 @@ export class FuseNavigationService
     /**
      * Constructor
      */
-    constructor( private pageService: PageService,
+    constructor(private pageService: PageService,
         private userPageSessionService: UserPageSessionService,
-        private authService:AuthenticationService,
-        private organisationPageSessionService:OrganisationPageSessionService)
-    {
+        private authService: AuthenticationService,
+        private organisationPageSessionService: OrganisationPageSessionService) {
         // Set the defaults
         this.onItemCollapsed = new Subject();
         this.onItemCollapseToggled = new Subject();
@@ -48,8 +46,8 @@ export class FuseNavigationService
         this._onNavigationItemAdded = new BehaviorSubject(null);
         this._onNavigationItemUpdated = new BehaviorSubject(null);
         this._onNavigationItemRemoved = new BehaviorSubject(null);
-        if(this.authService.isAuthenticated())
-        this.getNav();
+        if (this.authService.isAuthenticated())
+            this.getNav();
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -61,8 +59,7 @@ export class FuseNavigationService
      *
      * @returns {Observable<any>}
      */
-    get onNavigationChanged(): Observable<any>
-    {
+    get onNavigationChanged(): Observable<any> {
         return this._onNavigationChanged.asObservable();
     }
 
@@ -71,8 +68,7 @@ export class FuseNavigationService
      *
      * @returns {Observable<any>}
      */
-    get onNavigationRegistered(): Observable<any>
-    {
+    get onNavigationRegistered(): Observable<any> {
         return this._onNavigationRegistered.asObservable();
     }
 
@@ -81,8 +77,7 @@ export class FuseNavigationService
      *
      * @returns {Observable<any>}
      */
-    get onNavigationUnregistered(): Observable<any>
-    {
+    get onNavigationUnregistered(): Observable<any> {
         return this._onNavigationUnregistered.asObservable();
     }
 
@@ -91,8 +86,7 @@ export class FuseNavigationService
      *
      * @returns {Observable<any>}
      */
-    get onNavigationItemAdded(): Observable<any>
-    {
+    get onNavigationItemAdded(): Observable<any> {
         return this._onNavigationItemAdded.asObservable();
     }
 
@@ -101,8 +95,7 @@ export class FuseNavigationService
      *
      * @returns {Observable<any>}
      */
-    get onNavigationItemUpdated(): Observable<any>
-    {
+    get onNavigationItemUpdated(): Observable<any> {
         return this._onNavigationItemUpdated.asObservable();
     }
 
@@ -111,8 +104,7 @@ export class FuseNavigationService
      *
      * @returns {Observable<any>}
      */
-    get onNavigationItemRemoved(): Observable<any>
-    {
+    get onNavigationItemRemoved(): Observable<any> {
         return this._onNavigationItemRemoved.asObservable();
     }
 
@@ -127,11 +119,9 @@ export class FuseNavigationService
      * @param key
      * @param navigation
      */
-    register(key, navigation): void
-    {
+    register(key, navigation): void {
         // Check if the key already being used
-        if ( this._registry[key] )
-        {
+        if (this._registry[key]) {
             console.error(`The navigation with the key '${key}' already exists. Either unregister it first or use a unique key.`);
 
             return;
@@ -148,11 +138,9 @@ export class FuseNavigationService
      * Unregister the navigation from the registry
      * @param key
      */
-    unregister(key): void
-    {
+    unregister(key): void {
         // Check if the navigation exists
-        if ( !this._registry[key] )
-        {
+        if (!this._registry[key]) {
             console.warn(`The navigation with the key '${key}' doesn't exist in the registry.`);
         }
 
@@ -169,11 +157,9 @@ export class FuseNavigationService
      * @param key
      * @returns {any}
      */
-    getNavigation(key): any
-    {
+    getNavigation(key): any {
         // Check if the navigation exists
-        if ( !this._registry[key] )
-        {
+        if (!this._registry[key]) {
             console.warn(`The navigation with the key '${key}' doesn't exist in the registry.`);
 
             return;
@@ -190,21 +176,16 @@ export class FuseNavigationService
      * @param flatNavigation
      * @returns {any[]}
      */
-    getFlatNavigation(navigation, flatNavigation: FuseNavigationItem[] = []): any
-    {
-        for ( const item of navigation )
-        {
-            if ( item.type === 'item' )
-            {
+    getFlatNavigation(navigation, flatNavigation: FuseNavigationItem[] = []): any {
+        for (const item of navigation) {
+            if (item.type === 'item') {
                 flatNavigation.push(item);
 
                 continue;
             }
 
-            if ( item.type === 'collapsable' || item.type === 'group' )
-            {
-                if ( item.children )
-                {
+            if (item.type === 'collapsable' || item.type === 'group') {
+                if (item.children) {
                     this.getFlatNavigation(item.children, flatNavigation);
                 }
             }
@@ -218,10 +199,8 @@ export class FuseNavigationService
      *
      * @returns {any}
      */
-    getCurrentNavigation(): any
-    {
-        if ( !this._currentNavigationKey )
-        {
+    getCurrentNavigation(): any {
+        if (!this._currentNavigationKey) {
             console.warn(`The current navigation is not set.`);
 
             return;
@@ -236,11 +215,9 @@ export class FuseNavigationService
      *
      * @param key
      */
-    setCurrentNavigation(key): void
-    {
+    setCurrentNavigation(key): void {
         // Check if the sidebar exists
-        if ( !this._registry[key] )
-        {
+        if (!this._registry[key]) {
             console.warn(`The navigation with the key '${key}' doesn't exist in the registry.`);
 
             return;
@@ -261,26 +238,20 @@ export class FuseNavigationService
      * @param {any} navigation
      * @returns {any | boolean}
      */
-    getNavigationItem(id, navigation = null): any | boolean
-    {
-        if ( !navigation )
-        {
+    getNavigationItem(id, navigation = null): any | boolean {
+        if (!navigation) {
             navigation = this.getCurrentNavigation();
         }
 
-        for ( const item of navigation )
-        {
-            if ( item.id === id )
-            {
+        for (const item of navigation) {
+            if (item.id === id) {
                 return item;
             }
 
-            if ( item.children )
-            {
+            if (item.children) {
                 const childItem = this.getNavigationItem(id, item.children);
 
-                if ( childItem )
-                {
+                if (childItem) {
                     return childItem;
                 }
             }
@@ -297,27 +268,21 @@ export class FuseNavigationService
      * @param {any} navigation
      * @param parent
      */
-    getNavigationItemParent(id, navigation = null, parent = null): any
-    {
-        if ( !navigation )
-        {
+    getNavigationItemParent(id, navigation = null, parent = null): any {
+        if (!navigation) {
             navigation = this.getCurrentNavigation();
             parent = navigation;
         }
 
-        for ( const item of navigation )
-        {
-            if ( item.id === id )
-            {
+        for (const item of navigation) {
+            if (item.id === id) {
                 return parent;
             }
 
-            if ( item.children )
-            {
+            if (item.children) {
                 const childItem = this.getNavigationItemParent(id, item.children, item);
 
-                if ( childItem )
-                {
+                if (childItem) {
                     return childItem;
                 }
             }
@@ -332,34 +297,29 @@ export class FuseNavigationService
      * @param item
      * @param id
      */
-    addNavigationItem(item, id): void
-    {
+    addNavigationItem(item, id): void {
         // Get the current navigation
         const navigation: any[] = this.getCurrentNavigation();
 
         // Add to the end of the navigation
-        if ( id === 'end' )
-        {
+        if (id === 'end') {
             navigation.push(item);
 
             return;
         }
 
         // Add to the start of the navigation
-        if ( id === 'start' )
-        {
+        if (id === 'start') {
             navigation.unshift(item);
         }
 
         // Add it to a specific location
         const parent: any = this.getNavigationItem(id);
 
-        if ( parent )
-        {
+        if (parent) {
             // Check if parent has a children entry,
             // and add it if it doesn't
-            if ( !parent.children )
-            {
+            if (!parent.children) {
                 parent.children = [];
             }
 
@@ -377,14 +337,12 @@ export class FuseNavigationService
      * @param id
      * @param properties
      */
-    updateNavigationItem(id, properties): void
-    {
+    updateNavigationItem(id, properties): void {
         // Get the navigation item
         const navigationItem = this.getNavigationItem(id);
 
         // If there is no navigation with the give id, return
-        if ( !navigationItem )
-        {
+        if (!navigationItem) {
             return;
         }
 
@@ -400,13 +358,11 @@ export class FuseNavigationService
      *
      * @param id
      */
-    removeNavigationItem(id): void
-    {
+    removeNavigationItem(id): void {
         const item = this.getNavigationItem(id);
 
         // Return, if there is not such an item
-        if ( !item )
-        {
+        if (!item) {
             return;
         }
 
@@ -425,38 +381,38 @@ export class FuseNavigationService
         this._onNavigationItemRemoved.next(true);
     }
 
-    clearNav(){
+    clearNav() {
         this.unregister('main');
-        this.navigation =[]; 
+        this.navigation = [];
         this.userPageSessionService.destroy();
     }
 
-    setNav(){
+    setNav() {
         this.register('main', this.navigation);
         this.setCurrentNavigation('main');
     }
 
-    getNav(){
-        this.navigation =[];
+    getNav() {
+        this.navigation = [];
         if (this.userPageSessionService.isMenuCached()) {
             this.navigation = this.userPageSessionService.getUserPages();
             this.setNav();
-          } else {
-            let orgId=this.organisationPageSessionService.getOrganisationId();
-            this.pageService.getPageByOrganisationId(true,orgId).subscribe(data => {
-                    data.map(item => {
-                        return {
-                            id:item.name,
-                            title: item.name,
-                            type: 'item',
-                            url: item.url,
-                            icon:item.icon
-                        }
-                    }).forEach(item => this.navigation.push(item));
-                    this.userPageSessionService.create(this.navigation);
-                    this.setNav();
-                });
+        } else {
+            let orgId = this.organisationPageSessionService.getOrganisationId();
+            this.pageService.getPageByOrganisationId(true, orgId).subscribe(data => {
+                data.map(item => {
+                    return {
+                        id: item.name,
+                        title: item.name,
+                        type: 'item',
+                        url: item.url,
+                        icon: item.icon
+                    }
+                }).forEach(item => this.navigation.push(item));
+                this.userPageSessionService.create(this.navigation);
+                this.setNav();
+            });
         }
-       
+
     }
 }

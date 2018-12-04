@@ -3,7 +3,7 @@ using System.Linq;
 using Geosemantic.Common.Constants;
 using Geosemantic.Common.Enums;
 using Geosemantic.Domain.Entities;
- 
+
 using Xen.Common.Enums;
 using Xen.Extensions;
 
@@ -30,7 +30,7 @@ namespace Geosemantic.Data.Extensions
             context.Page.AddRange(
                 new Page
                 {
-                   
+
                     Name = "Dashboard",
                     ShortName = "DB",
                     Sequence = 1,
@@ -45,10 +45,10 @@ namespace Geosemantic.Data.Extensions
                     LastChangeTs = DateTime.UtcNow,
                     LastChangeUserId = "0",
                     StatusType = StatusType.Enabled
-                }, 
+                },
                 new Page
                 {
-                    
+
                     Name = "Forms",
                     ShortName = "FM",
                     Sequence = 2,
@@ -63,10 +63,10 @@ namespace Geosemantic.Data.Extensions
                     LastChangeTs = DateTime.UtcNow,
                     LastChangeUserId = "0",
                     StatusType = StatusType.Enabled
-                }, 
+                },
                 new Page
                 {
-                  
+
                     Name = "Questions",
                     ShortName = "QU",
                     Sequence = 3,
@@ -81,10 +81,10 @@ namespace Geosemantic.Data.Extensions
                     LastChangeTs = DateTime.UtcNow,
                     LastChangeUserId = "0",
                     StatusType = StatusType.Enabled
-                }, 
+                },
                 new Page
                 {
-                 
+
                     Name = "Chats",
                     ShortName = "CH",
                     Sequence = 4,
@@ -99,10 +99,10 @@ namespace Geosemantic.Data.Extensions
                     LastChangeTs = DateTime.UtcNow,
                     LastChangeUserId = "0",
                     StatusType = StatusType.Enabled
-                }, 
+                },
                 new Page
                 {
-                  
+
                     Name = "Users",
                     ShortName = "USE",
                     Sequence = 5,
@@ -117,10 +117,10 @@ namespace Geosemantic.Data.Extensions
                     LastChangeTs = DateTime.UtcNow,
                     LastChangeUserId = "0",
                     StatusType = StatusType.Enabled
-                }, 
+                },
                 new Page
                 {
-                    
+
                     Name = "Contacts",
                     ShortName = "CON",
                     Sequence = 6,
@@ -135,10 +135,10 @@ namespace Geosemantic.Data.Extensions
                     LastChangeTs = DateTime.UtcNow,
                     LastChangeUserId = "0",
                     StatusType = StatusType.Enabled
-                }, 
+                },
                 new Page
                 {
-                    
+
                     Name = "Reports",
                     ShortName = "REP",
                     Sequence = 7,
@@ -153,10 +153,10 @@ namespace Geosemantic.Data.Extensions
                     LastChangeTs = DateTime.UtcNow,
                     LastChangeUserId = "0",
                     StatusType = StatusType.Enabled
-                }, 
+                },
                 new Page
                 {
-                  
+
                     Name = "Setting",
                     ShortName = "SE",
                     Sequence = 8,
@@ -185,6 +185,15 @@ namespace Geosemantic.Data.Extensions
 
             context.Role.AddRange(
                 new Role
+                {
+                    Name = RoleConstants.SuperAdmin,
+                    RoleSystemType = RoleSystemType.System,
+                    CreationTs = DateTime.UtcNow,
+                    CreationUserId = "System",
+                    LastChangeTs = DateTime.UtcNow,
+                    LastChangeUserId = "System",
+                    StatusType = StatusType.Enabled
+                }, new Role
                 {
                     Name = RoleConstants.Admin,
                     RoleSystemType = RoleSystemType.System,
@@ -221,6 +230,7 @@ namespace Geosemantic.Data.Extensions
                 LastName = "Santhanaraj",
                 MobileNumber = "9600155567",
                 Password = "reset@123".ToPasswordHash(),
+                UserStatusType = UserStatusType.Approved,
                 UserSystemType = UserSystemType.System,
                 CreationTs = DateTime.UtcNow,
                 CreationUserId = "System",
@@ -228,16 +238,6 @@ namespace Geosemantic.Data.Extensions
                 LastChangeUserId = "System",
                 StatusType = StatusType.Enabled,
                 RoleId = 1
-                //Role = new Role
-                //{
-                //    Name = RoleConstants.Admin,
-                //    RoleSystemType = RoleSystemType.System,
-                //    CreationTs = DateTime.UtcNow,
-                //    CreationUserId = "System",
-                //    LastChangeTs = DateTime.UtcNow,
-                //    LastChangeUserId = "System",
-                //    StatusType = StatusType.Enabled
-                //}
             });
             context.SaveChanges();
         }
@@ -295,7 +295,7 @@ namespace Geosemantic.Data.Extensions
                     StatusType = StatusType.Enabled
                 }, new RolePageMapping
                 {
-                   
+
                     PageId = 6,
                     RoleId = 2,
                     CreationTs = DateTime.UtcNow,

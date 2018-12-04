@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit
     {
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
         this.loginForm = this._formBuilder.group({
-            mobileNumber   : ['', Validators.compose([Validators.required, Validators.maxLength(10)])],
+            email   : ['', Validators.compose([Validators.required, Validators.email])],
             password: ['', Validators.required]
         });
     }
@@ -80,8 +80,11 @@ export class LoginComponent implements OnInit
     login() {
         debugger;
         if (this.loginForm.valid) {
+            debugger;
             this.authService.login(this.vm.username, this.vm.password).subscribe(() => {
-                this.organisation();
+
+               // this.organisation();
+               this.router.navigate([this.returnUrl]);
             });
         }
         else {
@@ -110,7 +113,7 @@ export class LoginComponent implements OnInit
 
       proceedDashboard() {
           debugger;
-        this.router.navigate([this.returnUrl]);
+        
       }
 
       proceedOrganisation() {

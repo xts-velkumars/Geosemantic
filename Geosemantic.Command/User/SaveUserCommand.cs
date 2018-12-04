@@ -19,8 +19,6 @@ namespace Geosemantic.Command.User
 
         public GenderType GenderType { get; set; }
 
-        public UserSystemType UserSystemType { get; set; }
-
         public string DateOfBirth { get; set; }
 
         public string MobileNumber { get; set; }
