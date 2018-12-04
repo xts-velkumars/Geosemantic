@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule,MatIconModule,MatDatepickerModule,MatSelectModule } from '@angular/material';
 
 import { FuseSharedModule } from '@fuse/shared.module';
-
+import { UtilityService } from '../../services';
 import { RegisterComponent } from 'app/pages/register/register.component';
 
 const routes = [
@@ -28,6 +28,9 @@ const routes = [
         MatSelectModule,
         FuseSharedModule,
         MatIconModule
+    ],
+    providers   : [        
+        UtilityService
     ]
 })
 export class RegisterModule
