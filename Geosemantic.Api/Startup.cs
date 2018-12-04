@@ -237,6 +237,7 @@ namespace Geosemantic.Api
 
         protected virtual void ConfigureDatabase(IServiceCollection services)
         {
+            //Data base configure
             var connectionString = Configuration.GetConnectionString("ConnnectionString");
             services.AddDbContext<GeosemanticEntities>(options => options.UseSqlServer(connectionString));
         
