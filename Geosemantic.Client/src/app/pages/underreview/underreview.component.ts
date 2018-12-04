@@ -5,13 +5,13 @@ import { FuseConfigService } from '@fuse/services/config.service';
 import { Router } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 @Component({
-    selector     : 'under-riview',
-    templateUrl  : './underriview.component.html',
-    styleUrls    : ['./underriview.component.scss'],
+    selector     : 'under-review',
+    templateUrl  : './underreview.component.html',
+    styleUrls    : ['./underreview.component.scss'],
     encapsulation: ViewEncapsulation.None,
     animations   : fuseAnimations
 })
-export class UnderRiviewComponent implements OnInit, OnDestroy {
+export class UnderReviewComponent implements OnInit, OnDestroy {
     form: FormGroup;
     // Private
     private _unsubscribeAll: Subject<any>;

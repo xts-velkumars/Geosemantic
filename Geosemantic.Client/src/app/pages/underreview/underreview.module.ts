@@ -6,20 +6,20 @@ import {
     MatSortModule, MatTableModule, MatTabsModule ,MatDatepickerModule} from '@angular/material';
 
 import { FuseSharedModule } from '@fuse/shared.module';
-import { UnderRiviewComponent } from 'app/pages/underriview/underriview.component';
+import { UnderReviewComponent } from 'app/pages/underreview/underreview.component';
 import { UserService } from "../../services/userdata.service";
 import { AuthGuard } from 'app/guards/auth.guard';
 import { UtilityService } from '../../services';
 const routes: Routes = [
     {
         path     : '**',
-        component: UnderRiviewComponent,canActivate: [AuthGuard]
+        component: UnderReviewComponent,canActivate: [AuthGuard]
     }
 ];
 
 @NgModule({
     declarations: [
-        UnderRiviewComponent
+        UnderReviewComponent
     ],
     imports     : [
         RouterModule.forChild(routes),
@@ -45,7 +45,7 @@ const routes: Routes = [
         UtilityService
     ]
 })
-export class UnderRiviewModule
+export class UnderReviewModule
 {
 }
 

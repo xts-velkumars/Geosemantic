@@ -23,8 +23,8 @@ export const appRoutes: Routes = [
         path: 'awaitingapproval',
         loadChildren: './pages/awaitingapproval/awaitingapproval.module#AwaitingApprovalModule'
     }, {
-        path: 'underriview',
-        loadChildren: './pages/underriview/underriview.module#UnderRiviewModule'
+        path: 'underreview',
+        loadChildren: './pages/underreview/underreview.module#UnderReviewModule'
     }, {
         path: '**',
         redirectTo: 'dashboard'

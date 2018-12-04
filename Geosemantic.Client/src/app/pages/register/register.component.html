@@ -12,10 +12,6 @@
             <div class="title-bar" fxLayout="column" fxLayoutAlign="top start" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
                 <div class="logo my-12 m-sm-0 pt-14" fxLayout="row" fxLayoutAlign="start center">
                     <img  width="250" height="100" src="assets/images/logos/logo.png">
-                    <!-- <span class="logo-text secondary-text"><strong>Geosemantic</strong></span> -->
-                    <!-- <span class="logo-text h2" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
-                            Geosemantic
-                    </span> -->
                 </div>
             </div>
         </div>
@@ -26,6 +22,17 @@
                 </span>
             </div>
             <div class="info-content">
+                    <div fxLayout="column" fxLayout.gt-xs="row" fxFlex="1 0 auto" fxLayoutGap="20px">
+                            <mat-form-field fxFlex="100">
+                                <input matInput placeholder="Email" formControlName="emailAddress">
+                                <mat-error *ngIf="form.get('emailAddress').hasError('required')">
+                                    Email is required
+                                </mat-error>
+                                <mat-error *ngIf="!form.get('emailAddress').hasError('required') && form.get('emailAddress').hasError('email')">
+                                    Please enter a valid email address
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
                 <form novalidate name="form" [formGroup]="form" class="p-24 mr-24" fxLayout="column" fxLayoutAlign="center"
                     fxFlex="1 0 auto" fusePerfectScrollbar>
                     <div fxLayout="column" fxLayout.gt-xs="row" fxFlex="1 0 auto" fxLayoutGap="20px">
@@ -40,6 +47,25 @@
                     </div>
 
                     <div fxLayout="column" fxLayout.gt-xs="row" fxFlex="1 0 auto" fxLayoutGap="20px">
+                            <mat-form-field fxFlex="50">
+                                <input matInput type="password" placeholder="Password" formControlName="password" >
+                                <mat-error>
+                                    Password is required
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field fxFlex="50">
+                                <input matInput type="password" placeholder="Password (Confirm)" formControlName="confirmpassword">
+                                <mat-error *ngIf="form.get('confirmpassword').hasError('required')">
+                                    Password confirmation is required
+                                </mat-error>
+                                <mat-error *ngIf="!form.get('confirmpassword').hasError('required') &&
+                                form.get('confirmpassword').hasError('passwordsNotMatching')">
+                                    Passwords must match
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                    <div fxLayout="column" fxLayout.gt-xs="row" fxFlex="1 0 auto" fxLayoutGap="20px">
                         <mat-form-field fxFlex="50">
                             <input matInput placeholder="Mobile Number" onlyNumber formControlName="mobileNumber" maxlength="10"  required>
                             <mat-error *ngIf="form.get('mobileNumber').hasError('required')">
@@ -51,23 +77,15 @@
                         </mat-form-field>
 
                         <mat-form-field fxFlex="50">
-                            <input matInput placeholder="Email" formControlName="emailAddress">
-                            <mat-error *ngIf="form.get('emailAddress').hasError('required')">
-                                Email is required
-                            </mat-error>
-                            <mat-error *ngIf="!form.get('emailAddress').hasError('required') && form.get('emailAddress').hasError('email')">
-                                Please enter a valid email address
-                            </mat-error>
-                        </mat-form-field>
+                                <input matInput [matDatepicker]="picker" placeholder="Date of birth" required formControlName="dateOfBirth" >
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-error>Date of birth is required</mat-error>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
                     </div>
 
                     <div fxLayout="column" fxLayout.gt-xs="row" fxFlex="1 0 auto" fxLayoutGap="20px">
-                        <mat-form-field fxFlex="50">
-                            <input matInput [matDatepicker]="picker" placeholder="Date of birth" required formControlName="dateOfBirth" >
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-error>Date of birth is required</mat-error>
-                            <mat-datepicker #picker></mat-datepicker>
-                        </mat-form-field>
+                        
                         <mat-form-field fxFlex="50">
                             <mat-select placeholder="Gender" formControlName="genderType" required >
                                 <mat-option *ngFor="let gender of genderTypes" [value]="gender.key">
@@ -76,37 +94,18 @@
                             </mat-select>
                             <mat-error>Gender is required</mat-error>
                         </mat-form-field>
+                        <mat-form-field fxFlex="50">
+                                <mat-select placeholder="Role" formControlName="roleId" required >
+                                    <mat-option *ngFor="let role of roleTypes" [value]="role.key">
+                                        {{role.value}}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error>Role is required</mat-error>
+                            </mat-form-field>
                     </div>
 
-                    <div fxLayout="column" fxLayout.gt-xs="row" fxFlex="1 0 auto" fxLayoutGap="20px">
-                        <mat-form-field fxFlex="50">
-                            <mat-select placeholder="Role" formControlName="roleId" required >
-                                <mat-option *ngFor="let role of roleTypes" [value]="role.key">
-                                    {{role.value}}
-                                </mat-option>
-                            </mat-select>
-                            <mat-error>Role is required</mat-error>
-                        </mat-form-field>
-                        
-                    </div>
-                    <div fxLayout="column" fxLayout.gt-xs="row" fxFlex="1 0 auto" fxLayoutGap="20px">
-                        <mat-form-field fxFlex="50">
-                            <input matInput type="password" placeholder="Password" formControlName="password" >
-                            <mat-error>
-                                Password is required
-                            </mat-error>
-                        </mat-form-field>
-                        <mat-form-field fxFlex="50">
-                            <input matInput type="password" placeholder="Password (Confirm)" formControlName="confirmpassword">
-                            <mat-error *ngIf="form.get('confirmpassword').hasError('required')">
-                                Password confirmation is required
-                            </mat-error>
-                            <mat-error *ngIf="!form.get('confirmpassword').hasError('required') &&
-                            form.get('confirmpassword').hasError('passwordsNotMatching')">
-                                Passwords must match
-                            </mat-error>
-                        </mat-form-field>
-                    </div>
+                    
+                    
 
                     <div fxLayout="row" class="button-bar" fxLayoutAlign="end center">
                         <button mat-raised-button color="warn" [routerLink]="'/login'">
