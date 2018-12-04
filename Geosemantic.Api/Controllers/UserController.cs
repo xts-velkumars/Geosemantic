@@ -50,5 +50,13 @@ namespace Geosemantic.Api.Controllers
             var result = await mediatr.Send(command);
             return result.ToActionResult();
         }
+
+        [HttpDelete]
+        [Route("api/user/{id}/delete")]
+        public async Task<IActionResult> DeleteUser(long id)
+        {
+            var result = await mediatr.Send(new DeleteUserCommand(id, user));
+            return result.ToActionResult();
+        }
     }
 }
