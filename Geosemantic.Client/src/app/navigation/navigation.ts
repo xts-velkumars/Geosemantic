@@ -16,11 +16,11 @@ export const navigation: FuseNavigation[] = [
         url: '/users'
     },
     {
-        id: 'newsletter',
-        title: 'News Letter',
+        id: 'newsfeed',
+        title: 'News Feed',
         type: 'item',
-        icon: 'person',
-        url: '/newsletter'
+        icon: 'receipt',
+        url: '/newsfeed'
     }
 
 ];

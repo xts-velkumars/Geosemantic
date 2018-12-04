@@ -47,7 +47,7 @@ export const appRoutes: Routes = [
         path        : 'organisation',
         loadChildren: './pages/organisation/organisation.module#OrganisationModule'
     },{
-        path        : 'newsletter',
+        path        : 'newsfeed',
         loadChildren: './pages/newsletter/newsletter.module#NewsletterModule'
     },{
         path        : 'awaitingapproval',

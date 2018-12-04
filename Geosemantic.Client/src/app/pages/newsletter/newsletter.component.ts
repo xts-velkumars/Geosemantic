@@ -3,7 +3,6 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { NewsletterService } from './newsletter.service';
 
-
 @Component({
     selector     : 'newsletter',
     templateUrl  : './newsletter.component.html',
@@ -13,7 +12,7 @@ import { NewsletterService } from './newsletter.service';
 export class NewsletterComponent implements OnInit, OnDestroy
 {
     searchItems: any;
-
+   filteredItems: any;
     // Private
     private _unsubscribeAll: Subject<any>;
 
@@ -43,6 +42,7 @@ export class NewsletterComponent implements OnInit, OnDestroy
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(searchItems => {
                 this.searchItems = searchItems;
+                this.assignCopy();
             });
     }
 
@@ -55,4 +55,14 @@ export class NewsletterComponent implements OnInit, OnDestroy
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
     }
+    assignCopy(){
+        this.filteredItems = Object.assign([], this.searchItems);
+     }
+     filterItem(value){
+        if(!value) this.assignCopy(); //when nothing has typed
+        this.filteredItems = Object.assign([], this.searchItems).filter(
+           item => item.source.name.toLowerCase().indexOf(value.toLowerCase()) > -1
+        )
+     }
+     
 }

@@ -7,7 +7,7 @@
 
             <div class="search" fxLayout="row" fxLayoutAlign="start center">
                 <mat-icon>search</mat-icon>
-                <input placeholder="Search" fxFlex>
+                <input #myInput placeholder="Search" fxFlex (input)="filterItem(myInput.value)">
             </div>
 
         </div>
@@ -17,67 +17,26 @@
 
     <!-- CONTENT -->
     <div class="content p-24">
-
-        <div class="result-info" fxLayout="row" fxLayoutAlign="start center">
-
-            <span class="result-count h3 secondary-text">
-                <span>54</span>
-                <span class="ml-4">Results</span>
-            </span>
+        <div class="results">
+                <mat-accordion>
+                        <mat-expansion-panel (opened)="panelOpenState = true"
+                                             (closed)="panelOpenState = false" *ngFor="let item of filteredItems">
+                          <mat-expansion-panel-header>
+                            <mat-panel-title fxFlex="100">
+                                    <div class="header-title">{{item.source.name}}</div>
+                                    <div class="header-sub-title"><span class="name">Published at  </span> {{item.publishedAt}}</div>
+                                    <div class="header-sub-title" *ngIf="item.author!=null"><span class="name">Author  </span> {{item.author}}</div>
+                            </mat-panel-title>
+                          </mat-expansion-panel-header>
+                          <div>
+                                <div class="title blue-800-fg">{{item.title}}</div>
+                                <div class="url green-800-fg">{{item.url}}</div>
+                                <div class="excerpt">{{item.description}}</div>
+                        </div>
+                        </mat-expansion-panel>
+                      </mat-accordion>
             
         </div>
-
-        <div class="results">
-
-            <div class="result-item" *ngFor="let item of searchItems">
-                <div class="title blue-800-fg">{{item.title}}</div>
-                <div class="url green-800-fg">{{item.url}}</div>
-                <div class="excerpt">{{item.description}}</div>
-            </div>
-
-            <!-- <div class="simple-pagination">
-
-                <button mat-button class="pagination-item disabled" disabled="disabled"
-                        aria-label="Go to previous page">
-                    <mat-icon>chevron_left</mat-icon>
-                </button>
-
-                <button mat-button class="pagination-item active" [disableRipple]="true" aria-label="Go to page 1">
-                    <span>1</span>
-                </button>
-
-                <button mat-button class="pagination-item" aria-label="Go to page 2">
-                    <span>2</span>
-                </button>
-
-                <button mat-button class="pagination-item" aria-label="Go to page 3">
-                    <span>3</span>
-                </button>
-
-                <button mat-button class="pagination-item" aria-label="Go to page 4">
-                    <span>4</span>
-                </button>
-
-                <button mat-button class="pagination-item" aria-label="Go to page 5">
-                    <span>5</span>
-                </button>
-
-                <button mat-button class="pagination-item">
-                    <span>...</span>
-                </button>
-
-                <button mat-button class="pagination-item" aria-label="Go to page 10">
-                    <span>10</span>
-                </button>
-
-                <button mat-button class="pagination-item" aria-label="Go to next page">
-                    <mat-icon>chevron_right</mat-icon>
-                </button>
-
-            </div> -->
-
-        </div>
-
     </div>
     <!-- / CONTENT -->
 
