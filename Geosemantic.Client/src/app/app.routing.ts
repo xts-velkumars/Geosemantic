@@ -17,7 +17,7 @@ export const appRoutes: Routes = [
         path: 'login',
         loadChildren: './pages/login/login.module#LoginModule'
     }, {
-        path: 'newsletter',
+        path: 'newsfeed',
         loadChildren: './pages/newsletter/newsletter.module#NewsletterModule'
     }, {
         path: 'awaitingapproval',

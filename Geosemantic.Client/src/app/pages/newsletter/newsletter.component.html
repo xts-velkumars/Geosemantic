@@ -24,11 +24,11 @@
                           <mat-expansion-panel-header>
                             <mat-panel-title fxFlex="100">
                                     <div class="header-title">{{item.source.name}}</div>
-                                    <div class="header-sub-title"><span class="name">Published at  </span> {{item.publishedAt}}</div>
+                                    <div class="header-sub-title" *ngIf="item.publishedAt!=null"><span class="name">Published at  </span> {{item.publishedAt|date:"dd/MM/yyyy h:mm a"}}</div>
                                     <div class="header-sub-title" *ngIf="item.author!=null"><span class="name">Author  </span> {{item.author}}</div>
                             </mat-panel-title>
                           </mat-expansion-panel-header>
-                          <div>
+                          <div >
                                 <div class="title blue-800-fg">{{item.title}}</div>
                                 <div class="url green-800-fg">{{item.url}}</div>
                                 <div class="excerpt">{{item.description}}</div>

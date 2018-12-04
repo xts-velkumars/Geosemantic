@@ -33,13 +33,10 @@ newsletter {
     }
 
     .content {
-        // mat-panel-title{
-        //     min-width: 250px;
-        // }
-        // .mat-expansion-panel-header-description, .mat-expansion-panel-header-title {
-        //     margin-right: 0px;
-        // }
-        .mat-expansion-panel-header {
+        .mat-expansion-panel-header{
+            font-family: Roboto, "Helvetica Neue", sans-serif;
+        }
+        .mat-expansion-panel-content{
             font-family: Roboto, "Helvetica Neue", sans-serif;
         }
         mat-panel-title{
