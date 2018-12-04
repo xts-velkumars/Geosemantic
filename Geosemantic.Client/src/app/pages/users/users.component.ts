@@ -55,10 +55,28 @@ export class UsersComponent implements OnInit {
     }
 
     approvedUser(user) {
-        this.usersService.approved(user.id).subscribe(users => {
-            this.alertService.success("User Status Updated successfully");
-            this.refresh();
+
+
+        const dialogConfig = new MatDialogConfig();
+        dialogConfig.autoFocus = true;
+        dialogConfig.data = {
+            title: 'Approved Confirmation',
+            body: 'Are you sure you want to approved the user?',
+        };
+
+        const dialogRef = this.dialog.open(ConfirmationModalComponent, dialogConfig);
+
+        dialogRef.afterClosed().subscribe(result => {
+            if (result === true) {
+                this.usersService.approved(user.id).subscribe(users => {
+                    this.alertService.success("User Status Updated successfully");
+                    this.refresh();
+                });
+            }
         });
+
+
+       
     }
 
 
@@ -96,7 +114,7 @@ export class UsersComponent implements OnInit {
         dialogConfig.autoFocus = true;
         dialogConfig.data = {
             title: 'Delete Confirmation',
-            body: 'Are you sure you want to delete the selected users?',
+            body: 'Are you sure you want to delete the user?',
         };
 
         const dialogRef = this.dialog.open(ConfirmationModalComponent, dialogConfig);

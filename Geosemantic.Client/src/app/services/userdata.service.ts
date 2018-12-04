@@ -22,7 +22,9 @@ export class UserService {
     }
 
     approved(id) {
-        return this.dataService.post('/api/user/approved/', id);
+        let data = {};
+        data.id = id;
+        return this.dataService.post('/api/user/approved', data);
     }
 
     saveUser(user) {
