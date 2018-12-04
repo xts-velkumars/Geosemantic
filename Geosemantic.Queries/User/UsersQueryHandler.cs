@@ -27,6 +27,7 @@ namespace Geosemantic.Queries.User
             logger.LogInformation("Pulling user information");
 
             var users = await context.User
+                .Include(i=>i.Role)
                 .AsNoTracking()
                 .ToListAsync(cancellationToken);
 

@@ -25,6 +25,9 @@ namespace Geosemantic.Command.User
             if (data == null)
                 return new FailureResult("No record found");
 
+            if(data.IsSystemUser)
+                return new FailureResult("Sytem user couldn't be deleted");
+
             context.User.Remove(data);
             context.SaveChanges();
             return new SuccessResult();
