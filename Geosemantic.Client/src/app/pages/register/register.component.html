@@ -22,8 +22,11 @@
                 </span>
             </div>
             <div class="info-content">
+                   
+                <form novalidate name="form" [formGroup]="form" class="p-24 mr-24" fxLayout="column" fxLayoutAlign="center"
+                    fxFlex="1 0 auto" fusePerfectScrollbar>
                     <div fxLayout="column" fxLayout.gt-xs="row" fxFlex="1 0 auto" fxLayoutGap="20px">
-                            <mat-form-field fxFlex="100">
+                            <mat-form-field fxFlex="49">
                                 <input matInput placeholder="Email" formControlName="emailAddress">
                                 <mat-error *ngIf="form.get('emailAddress').hasError('required')">
                                     Email is required
@@ -33,8 +36,6 @@
                                 </mat-error>
                             </mat-form-field>
                         </div>
-                <form novalidate name="form" [formGroup]="form" class="p-24 mr-24" fxLayout="column" fxLayoutAlign="center"
-                    fxFlex="1 0 auto" fusePerfectScrollbar>
                     <div fxLayout="column" fxLayout.gt-xs="row" fxFlex="1 0 auto" fxLayoutGap="20px">
                         <mat-form-field fxFlex="50" >
                             <input matInput placeholder="First name" formControlName="firstName" required >
