@@ -40,7 +40,6 @@ export class AuthenticationService {
 
     return this.http.post<any>(this.baseUrl + "/api/token", data, { headers: headers })
     .map(user => {
-      debugger;
       if (user && user.access_token) {
          this.clearCachedMenu();
          const decodedToken = jwtDecode(user.access_token);

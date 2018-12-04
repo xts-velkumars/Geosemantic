@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
      * On init
      */
     ngOnInit(): void {
-        debugger;
+        
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
         this.loginForm = this._formBuilder.group({
             email: ['', Validators.compose([Validators.required, Validators.email])],

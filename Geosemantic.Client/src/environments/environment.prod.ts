@@ -1,5 +1,5 @@
 export const environment = {
-    apiBaseUrl: 'http://192.168.0.226:11100',
+    apiBaseUrl: 'http://yenbus.com:8003',
     production: false,
     environment: 'Local',
     dateFormat: 'DD-MM-YYYY',

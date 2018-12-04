@@ -108,7 +108,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
  * On Register
  */
     onRegister() {
-        debugger;
         if (this.form.valid) {
             this.userService.saveUser(this.form.value).subscribe(data => {
                 this.router.navigate(["/awaitingapproval"]);
