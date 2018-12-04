@@ -82,7 +82,7 @@ export class LoginComponent implements OnInit {
                     this.router.navigate([this.returnUrl]);
                 }
                 else {
-                    this.router.navigate(['underriview']);
+                    this.router.navigate(['/awaitingapproval']);
                 }
 
             });
