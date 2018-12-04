@@ -30,18 +30,18 @@
                     fxFlex="1 0 auto" fusePerfectScrollbar>
                     <div fxLayout="column" fxLayout.gt-xs="row" fxFlex="1 0 auto" fxLayoutGap="20px">
                         <mat-form-field fxFlex="50" >
-                            <input matInput placeholder="First name" formControlName="firstName" required [(ngModel)]="register.firstName">
+                            <input matInput placeholder="First name" formControlName="firstName" required >
                             <mat-error>First Name is required!</mat-error>
                         </mat-form-field>
                         <mat-form-field fxFlex="50" >
-                            <input matInput placeholder="Last name" formControlName="lastName" required [(ngModel)]="register.lastName">
+                            <input matInput placeholder="Last name" formControlName="lastName" required >
                             <mat-error>Last Name is required</mat-error>
                         </mat-form-field>
                     </div>
 
                     <div fxLayout="column" fxLayout.gt-xs="row" fxFlex="1 0 auto" fxLayoutGap="20px">
                         <mat-form-field fxFlex="50">
-                            <input matInput placeholder="Mobile Number" onlyNumber formControlName="mobileNumber" maxlength="10" [(ngModel)]="register.mobileNumber" required>
+                            <input matInput placeholder="Mobile Number" onlyNumber formControlName="mobileNumber" maxlength="10"  required>
                             <mat-error *ngIf="form.get('mobileNumber').hasError('required')">
                                 Mobile Numbe is required
                             </mat-error>
@@ -51,7 +51,7 @@
                         </mat-form-field>
 
                         <mat-form-field fxFlex="50">
-                            <input matInput placeholder="Email" formControlName="emailAddress" [(ngModel)]="register.emailAddress">
+                            <input matInput placeholder="Email" formControlName="emailAddress">
                             <mat-error *ngIf="form.get('emailAddress').hasError('required')">
                                 Email is required
                             </mat-error>
@@ -63,13 +63,13 @@
 
                     <div fxLayout="column" fxLayout.gt-xs="row" fxFlex="1 0 auto" fxLayoutGap="20px">
                         <mat-form-field fxFlex="50">
-                            <input matInput [matDatepicker]="picker" placeholder="Date of birth" required formControlName="dateOfBirth" [(ngModel)]="register.dateOfBirth">
+                            <input matInput [matDatepicker]="picker" placeholder="Date of birth" required formControlName="dateOfBirth" >
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-error>Date of birth is required</mat-error>
                             <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>
                         <mat-form-field fxFlex="50">
-                            <mat-select placeholder="Gender" formControlName="genderType" required [(ngModel)]="register.genderType">
+                            <mat-select placeholder="Gender" formControlName="genderType" required >
                                 <mat-option *ngFor="let gender of genderTypes" [value]="gender.key">
                                     {{gender.value}}
                                 </mat-option>
@@ -80,7 +80,7 @@
 
                     <div fxLayout="column" fxLayout.gt-xs="row" fxFlex="1 0 auto" fxLayoutGap="20px">
                         <mat-form-field fxFlex="50">
-                            <mat-select placeholder="Role" formControlName="roleId" required [(ngModel)]="register.roleId">
+                            <mat-select placeholder="Role" formControlName="roleId" required >
                                 <mat-option *ngFor="let role of roleTypes" [value]="role.key">
                                     {{role.value}}
                                 </mat-option>
@@ -91,18 +91,18 @@
                     </div>
                     <div fxLayout="column" fxLayout.gt-xs="row" fxFlex="1 0 auto" fxLayoutGap="20px">
                         <mat-form-field fxFlex="50">
-                            <input matInput type="password" placeholder="Password" formControlName="password" [(ngModel)]="register.password">
+                            <input matInput type="password" placeholder="Password" formControlName="password" >
                             <mat-error>
                                 Password is required
                             </mat-error>
                         </mat-form-field>
                         <mat-form-field fxFlex="50">
-                            <input matInput type="password" placeholder="Password (Confirm)" formControlName="passwordConfirm" [(ngModel)]="register.confirmPassword">
-                            <mat-error *ngIf="form.get('passwordConfirm').hasError('required')">
+                            <input matInput type="password" placeholder="Password (Confirm)" formControlName="confirmpassword">
+                            <mat-error *ngIf="form.get('confirmpassword').hasError('required')">
                                 Password confirmation is required
                             </mat-error>
-                            <mat-error *ngIf="!form.get('passwordConfirm').hasError('required') &&
-                            form.get('passwordConfirm').hasError('passwordsNotMatching')">
+                            <mat-error *ngIf="!form.get('confirmpassword').hasError('required') &&
+                            form.get('confirmpassword').hasError('passwordsNotMatching')">
                                 Passwords must match
                             </mat-error>
                         </mat-form-field>

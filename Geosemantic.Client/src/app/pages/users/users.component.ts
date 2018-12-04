@@ -54,8 +54,7 @@ export class UsersComponent implements OnInit {
     }
 
     ngOnInit(): void {
-       // this.getUsers(true);
-       // this.getRoles(true);
+        this.getUsers(false);     
     }
 
     activeStatus(user) {
@@ -63,8 +62,8 @@ export class UsersComponent implements OnInit {
     }
 
     getUsers(refresh) {
-        let orgId=this.organisationPageSessionService.getOrganisationId();
-        this.usersService.getUsers(orgId,refresh).subscribe(users => {
+        
+        this.usersService.getUsers(refresh).subscribe(users => {
             this.users = users;
             this.userDataSource = new FilesUserDataSource(this.paginator, this.sort, this.users);
             fromEvent(this.filter.nativeElement, 'keyup')
@@ -82,26 +81,7 @@ export class UsersComponent implements OnInit {
         });
     }
 
-    getRoles(refresh) {
-        let orgId=this.organisationPageSessionService.getOrganisationId();
-        this.usersService.getRoles(orgId,refresh).subscribe(roles => {
-            this.roles = roles;
-            this.roleDataSource = new FilesUserDataSource(this.paginator, this.sort, this.roles);
-            fromEvent(this.filter.nativeElement, 'keyup')
-                .pipe(
-                    takeUntil(this.unsubscribeAll),
-                    debounceTime(150),
-                    distinctUntilChanged()
-                )
-                .subscribe(() => {
-                    if (!this.roleDataSource) {
-                        return;
-                    }
-                    this.roleDataSource.filter = this.filter.nativeElement.value;
-                });
-        });
-    }
-
+    
     ngOnDestroy(): void {
         this.unsubscribeAll.next();
         this.unsubscribeAll.complete();
@@ -186,8 +166,7 @@ export class UsersComponent implements OnInit {
                     case 'save':
                         roleForm.value.organisationId=this.organisationPageSessionService.getOrganisationId();
                         this.roleService.saveRole(roleForm.value).subscribe(data => {
-                        this.alertService.success("Role saved successfully");
-                        this.getRoles(true);
+                        this.alertService.success("Role saved successfully");                        
                         });
                         break;
                     // case 'delete':

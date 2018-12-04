@@ -26,7 +26,13 @@
 
                                 </div>
 
-                                <mat-card-title>Profile Waiting For Approval </mat-card-title>
+                                <mat-card-title>
+                                    <div class="card-header" fxLayout="row" fxLayoutAlign="center">
+                                        <span class="card-text h2" [@animate]="{value:'*',params:{delay:'100ms',x:'250px'}}">
+                                                Profile Waiting For Approval
+                                        </span>
+                                    </div>
+                                </mat-card-title>
                             </mat-card-header>
                             <mat-card-content>
                                 Thank you for patience! Your profile waiting for approval, you will be notified through email soon

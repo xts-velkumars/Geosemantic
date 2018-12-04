@@ -6,19 +6,15 @@ import { DataService } from "app/services";
 export class UsersService 
 {
     users: any;
-    getUserRoute: string = "/api/users";
-    getRoleRoute: string = "/api/roles";
+    getUserRoute: string = "/api/users";    
     
     constructor( private dataService: DataService)
     {
     }
-    getUsers(orgId,refresh)
+    getUsers(refresh)
     {
-        return this.dataService.getData(this.getUserRoute+"/"+orgId, refresh);
+        return this.dataService.getData(this.getUserRoute, refresh);
     }
 
-    getRoles(orgId,refresh)
-    {
-        return this.dataService.getData(this.getRoleRoute+"/"+orgId, refresh);
-    }
+    
 }

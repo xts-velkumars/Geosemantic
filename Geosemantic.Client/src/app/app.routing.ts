@@ -50,6 +50,12 @@ export const appRoutes: Routes = [
         path        : 'newsletter',
         loadChildren: './pages/newsletter/newsletter.module#NewsletterModule'
     },{
+        path        : 'awaitingapproval',
+        loadChildren: './pages/awaitingapproval/awaitingapproval.module#AwaitingApprovalModule'
+    },{
+        path        : 'underriview',
+        loadChildren: './pages/underriview/underriview.module#UnderRiviewModule'
+    },{
         path      : '**',
         redirectTo: 'dashboard'
     }

@@ -79,7 +79,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
             roleId: ['', Validators.required],
             id: [this.id, null],
             password: ['', Validators.required],
-            passwordConfirm: ['', [Validators.required, confirmPasswordValidator]],
+            confirmpassword: ['', [Validators.required, confirmPasswordValidator]],
 
         }
 
@@ -92,7 +92,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         this.form.get('password').valueChanges
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(() => {
-                this.form.get('passwordConfirm').updateValueAndValidity();
+                this.form.get('confirmpassword').updateValueAndValidity();
             });
     }
 
@@ -111,9 +111,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
     onRegister() {
         debugger;
         if (this.form.valid) {
-            this.registerService.newuserregister(this.register).subscribe(data => {
+            this.registerService.newuserregister(this.form.value).subscribe(data => {
                 console.log("register-->"+data);
-                this.router.navigate(["/login"]);
+                this.router.navigate(["/awaitingapproval"]);
             });
         }
     }
@@ -146,7 +146,7 @@ export const confirmPasswordValidator: ValidatorFn = (control: AbstractControl):
     }
 
     const password = control.parent.get('password');
-    const passwordConfirm = control.parent.get('passwordConfirm');
+    const passwordConfirm = control.parent.get('confirmpassword');
 
     if (!password || !passwordConfirm) {
         return null;

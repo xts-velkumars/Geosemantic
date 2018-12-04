@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit
     loginForm: FormGroup;
     vm: Login;
     returnUrl: string;
+    status: string;
     /**
      * Constructor
      *
@@ -70,6 +71,7 @@ export class LoginComponent implements OnInit
      */
     ngOnInit(): void
     {
+        debugger;
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
         this.loginForm = this._formBuilder.group({
             email   : ['', Validators.compose([Validators.required, Validators.email])],
@@ -82,7 +84,14 @@ export class LoginComponent implements OnInit
         if (this.loginForm.valid) {
             debugger;
             this.authService.login(this.vm.username, this.vm.password).subscribe(() => {
-               this.router.navigate([this.returnUrl]);
+                this.status = this.userSessionService.userStatus();
+                if(this.status=='Approved'){
+                    this.router.navigate([this.returnUrl]);
+                }                
+                else{
+                    this.router.navigate(['underriview']);
+                }
+               
             });
         }
         else {
