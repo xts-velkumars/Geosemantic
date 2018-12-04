@@ -27,7 +27,7 @@
                     fxFlex="1 0 auto" fusePerfectScrollbar>
                     <div fxLayout="column" fxLayout.gt-xs="row" fxFlex="1 0 auto" fxLayoutGap="20px">
                             <mat-form-field fxFlex="49">
-                                <input matInput placeholder="Email" formControlName="emailAddress">
+                                <input matInput placeholder="Email" formControlName="emailAddress" required>
                                 <mat-error *ngIf="form.get('emailAddress').hasError('required')">
                                     Email is required
                                 </mat-error>
@@ -49,13 +49,13 @@
 
                     <div fxLayout="column" fxLayout.gt-xs="row" fxFlex="1 0 auto" fxLayoutGap="20px">
                             <mat-form-field fxFlex="50">
-                                <input matInput type="password" placeholder="Password" formControlName="password" >
+                                <input matInput type="password" placeholder="Password" formControlName="password" required>
                                 <mat-error>
                                     Password is required
                                 </mat-error>
                             </mat-form-field>
                             <mat-form-field fxFlex="50">
-                                <input matInput type="password" placeholder="Password (Confirm)" formControlName="confirmpassword">
+                                <input matInput type="password" placeholder="Password (Confirm)" formControlName="confirmpassword" required>
                                 <mat-error *ngIf="form.get('confirmpassword').hasError('required')">
                                     Password confirmation is required
                                 </mat-error>
