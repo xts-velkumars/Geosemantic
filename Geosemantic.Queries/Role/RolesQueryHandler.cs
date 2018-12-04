@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -9,7 +7,6 @@ using Geosemantic.Data;
 using Geosemantic.ViewModel;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Xen.Query;
 
 namespace Geosemantic.Queries.Role
 {
@@ -26,11 +23,14 @@ namespace Geosemantic.Queries.Role
         {
             message.DontAuditThisMessage();
 
-            var roles = await context.Role
+            var data = await context.Role
                 .AsNoTracking()
                 .ToListAsync(cancellationToken);
 
-            return roles.Select(Mapper.Map<RolesViewModel>);
+            data = data.OrderByDescending(i => i.CreationTs).ToList();
+            data.ForEach(a => a.ModifyDatesToDisplay(message.User));
+         
+            return data.Select(Mapper.Map<RolesViewModel>);
         }
     }
 }

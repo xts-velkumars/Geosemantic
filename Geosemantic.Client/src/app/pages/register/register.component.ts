@@ -16,11 +16,11 @@ import { UserService } from 'app/pages/user/user.service';
     animations: fuseAnimations
 })
 export class RegisterComponent implements OnInit, OnDestroy {
-    registerForm: FormGroup;
+    form: FormGroup;
     register: Register;
     id = 0;
-
     genderTypes: any;
+    
     roleTypes: any;
     // Private
     private _unsubscribeAll: Subject<any>;
@@ -49,7 +49,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
                     hidden: true
                 },
                 sidepanel: {
-                    hidden: true
+                    hidden: true 
                 }
             }
         };
@@ -68,7 +68,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.register.id = 0;
         this.register.roleId = 1;
-        this.registerForm = this._formBuilder.group({
+        this.form = this._formBuilder.group({
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
             mobileNumber: ['', Validators.compose([Validators.required, Validators.maxLength(10)])],
@@ -91,10 +91,10 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
         // Update the validity of the 'passwordConfirm' field
         // when the 'password' field changes
-        this.registerForm.get('password').valueChanges
+        this.form.get('password').valueChanges
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(() => {
-                this.registerForm.get('passwordConfirm').updateValueAndValidity();
+                this.form.get('passwordConfirm').updateValueAndValidity();
             });
     }
 

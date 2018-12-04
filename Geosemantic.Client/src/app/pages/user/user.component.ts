@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators,ValidatorFn,AbstractControl,ValidationErrors } from '@angular/forms';
 import { fuseAnimations } from '@fuse/animations';
 import { AlertService } from 'app/services/alert.service';
 import { UserService } from 'app/pages/user/user.service';
@@ -89,6 +89,30 @@ export class UserComponent implements OnInit
         }
       }
 }
+
+export const confirmPasswordValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+
+  if (!control.parent || !control) {
+      return null;
+  }
+
+  const password = control.parent.get('password');
+  const passwordConfirm = control.parent.get('passwordConfirm');
+
+  if (!password || !passwordConfirm) {
+      return null;
+  }
+
+  if (passwordConfirm.value === '') {
+      return null;
+  }
+
+  if (password.value === passwordConfirm.value) {
+      return null;
+  }
+
+  return { 'passwordsNotMatching': true };
+};
 
 
 

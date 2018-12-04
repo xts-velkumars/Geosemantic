@@ -10,7 +10,7 @@ export class UtilityService {
 
   
   getGenderType(refresh:Boolean){
-    return this.dataService.getData('/api/utility/gendertype', refresh);
+    return this.dataService.getData('/api/genders', refresh);
   }
 
    

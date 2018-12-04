@@ -1,26 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Geosemantic.Queries.Role;
 using Geosemantic.ViewModel;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Xen.Common.Interface;
 
 namespace Geosemantic.Api.Controllers
 {
     public class RoleController : Controller
     {
         private readonly IMediator mediatr;
+        private readonly ILoggedOnUserProvider user;
 
-        public RoleController(IMediator mediatr)
+
+        public RoleController(IMediator mediatr, ILoggedOnUserProvider user)
         {
             this.mediatr = mediatr;
+            this.user = user;
         }
 
         [HttpGet]
-        [Authorize]
         [Route("api/roleslookup")]
         public async Task<IEnumerable<LookUpViewModel>> GetRolesLookup()
         {
@@ -30,9 +31,9 @@ namespace Geosemantic.Api.Controllers
         [HttpGet]
         [Authorize]
         [Route("api/roles")]
-        public async Task<IEnumerable<LookUpViewModel>> GetRoles()
+        public async Task<IEnumerable<RolesViewModel>> GetRoles()
         {
-            return await mediatr.Send(new RolesQuery());
+            return await mediatr.Send(new RolesQuery(user));
         }
     }
 }

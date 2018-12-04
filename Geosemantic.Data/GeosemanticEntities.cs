@@ -23,22 +23,21 @@ namespace Geosemantic.Data
         {
             modelBuilder.Entity<User>(entity =>
             {
-
                 entity.Property(e => e.MobileNumber)
                     .IsRequired()
                     .HasMaxLength(10);
 
                 entity.Property(e => e.FirstName)
                     .IsRequired()
-                    .HasMaxLength(25);
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.LastName)
                     .IsRequired()
-                    .HasMaxLength(25);
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.EmailAddress)
                     .IsRequired()
-                    .HasMaxLength(25);
+                    .HasMaxLength(50);
             });
         }
 

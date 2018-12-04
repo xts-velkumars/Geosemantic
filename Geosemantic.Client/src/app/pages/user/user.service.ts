@@ -17,7 +17,7 @@ export class UserService {
 
     getRoles(orgId,refresh: Boolean)
     {
-        return this.dataService.getData(this.getRoleRoute+"/"+orgId, refresh);
+        return this.dataService.getData('/api/roleslookup', refresh);
     }
 
     saveUser(user) {

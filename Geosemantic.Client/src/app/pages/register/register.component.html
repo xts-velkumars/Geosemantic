@@ -6,7 +6,7 @@
             <div class="title-bar" fxLayout="column" fxLayoutAlign="top start" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
                 <div class="logo my-12 m-sm-0 pt-14" fxLayout="row" fxLayoutAlign="start center">
                     <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
-                        User Detail
+                        Register New User
                     </span>
                 </div>
             </div>
@@ -18,43 +18,42 @@
                 </span>
             </div>
             <div class="info-content">
-                <form novalidate name="registerForm" [formGroup]="registerForm" class="p-24 mr-24" fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto"
-                    fusePerfectScrollbar>
-
-                    <div fxLayout="column" fxLayout.gt-xs="row" fxFlex="1 0 auto">
-                        <mat-form-field fxFlex="50">
+                <form novalidate name="form" [formGroup]="form" class="p-24 mr-24" fxLayout="column" fxLayoutAlign="center"
+                    fxFlex="1 0 auto" fusePerfectScrollbar>
+                    <div fxLayout="column" fxLayout.gt-xs="row" fxFlex="1 0 auto" fxLayoutGap="20px">
+                        <mat-form-field fxFlex="50" >
                             <input matInput placeholder="First name" formControlName="firstName" required>
                             <mat-error>First Name is required!</mat-error>
                         </mat-form-field>
-                        <mat-form-field fxFlex="50">
+                        <mat-form-field fxFlex="50" >
                             <input matInput placeholder="Last name" formControlName="lastName" required>
                             <mat-error>Last Name is required</mat-error>
                         </mat-form-field>
                     </div>
 
-                    <div fxLayout="column" fxLayout.gt-xs="row" fxFlex="1 0 auto">
+                    <div fxLayout="column" fxLayout.gt-xs="row" fxFlex="1 0 auto" fxLayoutGap="20px">
                         <mat-form-field fxFlex="50">
                             <input matInput placeholder="Mobile Number" onlyNumber formControlName="mobileNumber" maxlength="10" required>
-                            <!-- <mat-error *ngIf="register.get('mobileNumber').hasError('required')">
+                            <mat-error *ngIf="form.get('mobileNumber').hasError('required')">
                                 Mobile Numbe is required
                             </mat-error>
-                            <mat-error *ngIf="!register.get('mobileNumber').hasError('required') && register.get('mobileNumber').hasError('maxlength')">
+                            <mat-error *ngIf="!form.get('mobileNumber').hasError('required') && form.get('mobileNumber').hasError('maxlength')">
                                 MobileNumber should not exceed 10 character
-                            </mat-error> -->
+                            </mat-error>
                         </mat-form-field>
 
                         <mat-form-field fxFlex="50">
                             <input matInput placeholder="Email" formControlName="emailAddress">
-                            <!-- <mat-error *ngIf="register.get('emailAddress').hasError('required')">
+                            <mat-error *ngIf="form.get('emailAddress').hasError('required')">
                                 Email is required
                             </mat-error>
-                            <mat-error *ngIf="!register.get('emailAddress').hasError('required') && register.get('emailAddress').hasError('email')">
+                            <mat-error *ngIf="!form.get('emailAddress').hasError('required') && form.get('emailAddress').hasError('email')">
                                 Please enter a valid email address
-                            </mat-error> -->
+                            </mat-error>
                         </mat-form-field>
                     </div>
 
-                    <div fxLayout="column" fxLayout.gt-xs="row" fxFlex="1 0 auto">
+                    <div fxLayout="column" fxLayout.gt-xs="row" fxFlex="1 0 auto" fxLayoutGap="20px">
                         <mat-form-field fxFlex="50">
                             <input matInput [matDatepicker]="picker" placeholder="Date of birth" required formControlName="dateOfBirth">
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -71,19 +70,38 @@
                         </mat-form-field>
                     </div>
 
-                    <div fxLayout="column" fxLayout.gt-xs="row" fxFlex="1 0 auto">
+                    <div fxLayout="column" fxLayout.gt-xs="row" fxFlex="1 0 auto" fxLayoutGap="20px">
                         <mat-form-field fxFlex="50">
                             <mat-select placeholder="Role" formControlName="roleId" required>
-                                <mat-option *ngFor="let role of roleTypes" [value]="role.id">
-                                    {{role.name}}
+                                <mat-option *ngFor="let role of roleTypes" [value]="role.key">
+                                    {{role.value}}
                                 </mat-option>
                             </mat-select>
                             <mat-error>Role is required</mat-error>
                         </mat-form-field>
+                        
+                    </div>
+                    <div fxLayout="column" fxLayout.gt-xs="row" fxFlex="1 0 auto" fxLayoutGap="20px">
+                        <mat-form-field fxFlex="50">
+                            <input matInput type="password" placeholder="Password" formControlName="password" [(ngModel)]="register.password">
+                            <mat-error>
+                                Password is required
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field fxFlex="50">
+                            <input matInput type="password" placeholder="Password (Confirm)" formControlName="passwordConfirm" [(ngModel)]="register.passwordConfirm">
+                            <mat-error *ngIf="form.get('passwordConfirm').hasError('required')">
+                                Password confirmation is required
+                            </mat-error>
+                            <mat-error *ngIf="!form.get('passwordConfirm').hasError('required') &&
+                            form.get('passwordConfirm').hasError('passwordsNotMatching')">
+                                Passwords must match
+                            </mat-error>
+                        </mat-form-field>
                     </div>
 
                     <div fxLayout="row" class="button-bar" fxLayoutAlign="end center">
-                        <button mat-raised-button color="warn" [routerLink]="'/users'">
+                        <button mat-raised-button color="warn" [routerLink]="'/login'">
                             <!-- <mat-icon class="material-icons md-36">remove</mat-icon> -->
                             Cancel
                         </button>

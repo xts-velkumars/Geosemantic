@@ -109,11 +109,12 @@ export class LoginComponent implements OnInit
       }
 
       proceedDashboard() {
+          debugger;
         this.router.navigate([this.returnUrl]);
       }
 
       proceedOrganisation() {
           debugger;
-        this.router.navigate(['/register']);
+        this.router.navigate(['/organisation']);
       }
 }

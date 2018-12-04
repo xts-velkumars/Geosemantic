@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Geosemantic.ViewModel
+﻿namespace Geosemantic.ViewModel
 {
     public class RolesViewModel
     {
@@ -10,6 +6,8 @@ namespace Geosemantic.ViewModel
 
         public string Name { get; set; }
 
-        public byte RoleSystemType { get; set; }
+        public bool IsSystemRole { get; set; }
+
+        public string CreatedDate { get; set; }
     }
 }

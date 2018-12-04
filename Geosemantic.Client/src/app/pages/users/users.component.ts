@@ -54,8 +54,8 @@ export class UsersComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.getUsers(true);
-        this.getRoles(true);
+       // this.getUsers(true);
+       // this.getRoles(true);
     }
 
     activeStatus(user) {

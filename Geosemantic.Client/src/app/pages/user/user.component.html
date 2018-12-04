@@ -73,11 +73,29 @@
                     <div fxLayout="column" fxLayout.gt-xs="row" fxFlex="1 0 auto">
                         <mat-form-field fxFlex="50">
                             <mat-select placeholder="Role" formControlName="roleId" required>
-                                <mat-option *ngFor="let role of roleTypes" [value]="role.id">
-                                    {{role.name}}
+                                <mat-option *ngFor="let role of roleTypes" [value]="role.key">
+                                    {{role.value}}
                                 </mat-option>
                             </mat-select>
                             <mat-error>Role is required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="column" fxLayout.gt-xs="row" fxFlex="1 0 auto">
+                        <mat-form-field fxFlex="50">
+                            <input matInput type="password" placeholder="Password" formControlName="password" [(ngModel)]="register.password">
+                            <mat-error>
+                                Password is required
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field fxFlex="50">
+                            <input matInput type="password" placeholder="Password (Confirm)" formControlName="passwordConfirm" [(ngModel)]="register.passwordConfirm">
+                            <mat-error *ngIf="form.get('passwordConfirm').hasError('required')">
+                                Password confirmation is required
+                            </mat-error>
+                            <mat-error *ngIf="!form.get('passwordConfirm').hasError('required') &&
+                            form.get('passwordConfirm').hasError('passwordsNotMatching')">
+                                Passwords must match
+                            </mat-error>
                         </mat-form-field>
                     </div>
 
