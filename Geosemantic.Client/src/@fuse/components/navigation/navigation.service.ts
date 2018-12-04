@@ -48,8 +48,8 @@ export class FuseNavigationService
         this._onNavigationItemAdded = new BehaviorSubject(null);
         this._onNavigationItemUpdated = new BehaviorSubject(null);
         this._onNavigationItemRemoved = new BehaviorSubject(null);
-        if(this.authService.isAuthenticated())
-        this.getNav();
+        // if(this.authService.isAuthenticated())
+        // this.getNav();
     }
 
     // -----------------------------------------------------------------------------------------------------

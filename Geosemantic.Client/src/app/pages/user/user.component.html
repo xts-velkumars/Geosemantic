@@ -4,18 +4,18 @@
         <div class="header accent" fxLayout="column" fxLayoutAlign="center start">
             <div class="title-bar" fxLayout="column" fxLayoutAlign="top start" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
                 <div class="logo my-12 m-sm-0 pt-14" fxLayout="row" fxLayoutAlign="start center">
-                    <span class="logo-text h1" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
-                        User Detail
-                    </span>
+                    <img class="logo-icon" src="assets/images/logos/icon_react_bw_white_48.png">
+                    <span class="logo-text secondary-text"><strong> {{cardTitle}}</strong></span>
+
                 </div>
             </div>
         </div>
         <div class="content-card">
-            <div class="card-header" fxLayout="row" fxLayoutAlign="start center">
+            <!-- <div class="card-header" fxLayout="row" fxLayoutAlign="start center">
                 <span class="card-text h2" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
                     {{cardTitle}}
                 </span>
-            </div>
+            </div> -->
             <div class="info-content">
                 <form novalidate name="form" [formGroup]="form" class="p-24 mr-24" fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto"
                     fusePerfectScrollbar>
@@ -82,13 +82,13 @@
                     </div>
                     <div fxLayout="column" fxLayout.gt-xs="row" fxFlex="1 0 auto">
                         <mat-form-field fxFlex="50">
-                            <input matInput type="password" placeholder="Password" formControlName="password" [(ngModel)]="register.password">
+                            <input matInput type="password" placeholder="Password" formControlName="password">
                             <mat-error>
                                 Password is required
                             </mat-error>
                         </mat-form-field>
                         <mat-form-field fxFlex="50">
-                            <input matInput type="password" placeholder="Password (Confirm)" formControlName="passwordConfirm" [(ngModel)]="register.passwordConfirm">
+                            <input matInput type="password" placeholder="Password (Confirm)" formControlName="passwordConfirm">
                             <mat-error *ngIf="form.get('passwordConfirm').hasError('required')">
                                 Password confirmation is required
                             </mat-error>

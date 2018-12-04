@@ -11,6 +11,6 @@ export class RegisterService {
 
     newuserregister(userdetails) {
       debugger;
-      return this.dataService.post('/api/register', userdetails);
+      return this.dataService.post('/api/user', userdetails);
   }
 }

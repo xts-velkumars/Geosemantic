@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule,MatDatepickerModule,MatSelectModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule,MatIconModule,MatDatepickerModule,MatSelectModule } from '@angular/material';
 
 import { FuseSharedModule } from '@fuse/shared.module';
 
@@ -26,7 +26,8 @@ const routes = [
         MatInputModule,
         MatDatepickerModule,
         MatSelectModule,
-        FuseSharedModule
+        FuseSharedModule,
+        MatIconModule
     ]
 })
 export class RegisterModule

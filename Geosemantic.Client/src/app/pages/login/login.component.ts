@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit
     {
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
         this.loginForm = this._formBuilder.group({
-            mobileNumber   : ['', Validators.compose([Validators.required, Validators.maxLength(10)])],
+            email   : ['', Validators.compose([Validators.required, Validators.email])],
             password: ['', Validators.required]
         });
     }
@@ -80,41 +80,17 @@ export class LoginComponent implements OnInit
     login() {
         debugger;
         if (this.loginForm.valid) {
+            debugger;
             this.authService.login(this.vm.username, this.vm.password).subscribe(() => {
-                this.organisation();
+               this.router.navigate([this.returnUrl]);
             });
         }
         else {
-          //this.validateAllFormFields(this.loginForm);
+         // this.validateAllFormFields(this.loginForm);
         }
       }
-      loginStatic(username,password){
-        this.authService.login(username,password).subscribe(() => {
-            this.organisation();
-        });
-      }
+      
+      
 
-      organisation(){
-          let isMultipleOrganisation=this.userSessionService.isMultipleOrganisation();
-        if (!isMultipleOrganisation){
-            let userId=this.userSessionService.userId();
-                this.organisationService.getOrganisation(userId,true).subscribe(organisation=>{
-                    this.organisationPageSessionService.create(organisation[0]);
-                    this.fuseNavigationService.getNav();
-                    this.proceedDashboard();
-                });
-        }else{
-            this.proceedOrganisation();
-        }
-      }
-
-      proceedDashboard() {
-          debugger;
-        this.router.navigate([this.returnUrl]);
-      }
-
-      proceedOrganisation() {
-          debugger;
-        this.router.navigate(['/organisation']);
-      }
+      
 }
