@@ -8,6 +8,7 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using FluentValidation.AspNetCore;
 using Geosemantic.Api.Extensions;
+using Geosemantic.Command.Email;
 using Geosemantic.Command.Login;
 using Geosemantic.Data;
 using Geosemantic.Data.Extensions;
@@ -146,6 +147,8 @@ namespace Geosemantic.Api
             services.AddLogging();
 
             var builder = new ContainerBuilder();
+
+            builder.RegisterType<EmailTemplates>();
 
             builder.RegisterType<GeosemanticEntities>().AsSelf().As<XenContext>().InstancePerLifetimeScope();
 

@@ -26,3 +26,5 @@
 /Geosemantic.Domain/bin/Release/netstandard2.0
 /Geosemantic.Queries/bin/Release/netstandard2.0
 /Geosemantic.ViewModel/bin/Release/netstandard2.0
+/Geosemantic.Api/logs
+/Geosemantic.Client/src/.vs

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Geosemantic.Data.Migrations
 {
     [DbContext(typeof(GeosemanticEntities))]
-    [Migration("20181203132528_mig33")]
+    [Migration("20181204114404_mig33")]
     partial class mig33
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -139,11 +139,11 @@ namespace Geosemantic.Data.Migrations
 
                     b.Property<string>("EmailAddress")
                         .IsRequired()
-                        .HasMaxLength(25);
+                        .HasMaxLength(50);
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasMaxLength(25);
+                        .HasMaxLength(50);
 
                     b.Property<byte?>("GenderType");
 
@@ -154,7 +154,7 @@ namespace Geosemantic.Data.Migrations
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasMaxLength(25);
+                        .HasMaxLength(50);
 
                     b.Property<string>("MobileNumber")
                         .IsRequired()
@@ -165,6 +165,8 @@ namespace Geosemantic.Data.Migrations
                     b.Property<long>("RoleId");
 
                     b.Property<byte>("StatusType");
+
+                    b.Property<byte>("UserStatusType");
 
                     b.Property<byte>("UserSystemType");
 

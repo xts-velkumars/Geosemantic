@@ -13,7 +13,7 @@ namespace Geosemantic.Domain.Entities
         public string MobileNumber { get; set; }
         public GenderType? GenderType { get; set; }
         public UserSystemType UserSystemType { get; set; }
-
+        public UserStatusType UserStatusType { get; set; }
         public long RoleId { get; set; }
         public Role Role { get; set; }
     }

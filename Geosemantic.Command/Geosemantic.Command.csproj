@@ -5,6 +5,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Email\Templates\Images\logo.png" />
+    <None Remove="Email\Templates\Users\UserConfirmation.html" />
+    <None Remove="Email\Templates\Users\UserRegistration.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Email\Templates\Images\logo.png" />
+    <EmbeddedResource Include="Email\Templates\Users\UserConfirmation.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Email\Templates\Users\UserRegistration.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
     <PackageReference Include="Xen.Command" Version="4.0.4" />
@@ -12,6 +28,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Geosemantic.Data\Geosemantic.Data.csproj" />
+    <ProjectReference Include="..\Geosemantic.Queries\Geosemantic.Queries.csproj" />
   </ItemGroup>
 
 </Project>

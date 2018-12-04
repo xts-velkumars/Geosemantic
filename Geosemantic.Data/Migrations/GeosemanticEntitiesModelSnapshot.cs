@@ -137,11 +137,11 @@ namespace Geosemantic.Data.Migrations
 
                     b.Property<string>("EmailAddress")
                         .IsRequired()
-                        .HasMaxLength(25);
+                        .HasMaxLength(50);
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasMaxLength(25);
+                        .HasMaxLength(50);
 
                     b.Property<byte?>("GenderType");
 
@@ -152,7 +152,7 @@ namespace Geosemantic.Data.Migrations
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasMaxLength(25);
+                        .HasMaxLength(50);
 
                     b.Property<string>("MobileNumber")
                         .IsRequired()
@@ -163,6 +163,8 @@ namespace Geosemantic.Data.Migrations
                     b.Property<long>("RoleId");
 
                     b.Property<byte>("StatusType");
+
+                    b.Property<byte>("UserStatusType");
 
                     b.Property<byte>("UserSystemType");
 

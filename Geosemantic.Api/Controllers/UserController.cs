@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Geosemantic.Command.User;
 using Geosemantic.Queries.User;
 using Geosemantic.ViewModel;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Xen.Api.Extensions;
 using Xen.Common.Interface;
 
 namespace Geosemantic.Api.Controllers
@@ -40,12 +42,13 @@ namespace Geosemantic.Api.Controllers
             return await mediatr.Send(new UserQuery(id));
         }
 
-        //[HttpPost]
-        //[Route("api/users")]
-        //public async Task<IActionResult> SaveUser([FromBody]SaveUserCommand command)
-        //{
-        //    var result = await mediatr.Send(command);
-        //    return result.ToActionResult();
-        //}
+
+        [HttpPost]
+        [Route("api/user")]
+        public async Task<IActionResult> SaveUser([FromBody]SaveUserCommand command)
+        {
+            var result = await mediatr.Send(command);
+            return result.ToActionResult();
+        }
     }
 }

@@ -12,10 +12,12 @@ namespace Geosemantic.Command.User
 {
     public class SaveUserCommandHandler : IRequestHandler<SaveUserCommand, XenResult<bool>>
     {
+        private readonly IMediator mediatr;
         private readonly GeosemanticEntities context;
-
-        public SaveUserCommandHandler(GeosemanticEntities context)
+    
+        public SaveUserCommandHandler(IMediator mediatr, GeosemanticEntities context)
         {
+            this.mediatr = mediatr;
             this.context = context;
         }
 
@@ -36,10 +38,28 @@ namespace Geosemantic.Command.User
             if (command.Id == 0)
             {
                 entity.UserSystemType = UserSystemType.UserDefined;
+                entity.UserStatusType = UserStatusType.WaitingForApproval;
                 context.User.Add(entity);
             }
 
             await context.SaveChangesAsync(cancellationToken);
+            if (command.Id != 0)
+                return new SuccessResult<bool>(true);
+
+            //Send email only for new user
+            return await SendUserRegistrationEmail(command);
+        }
+
+        private async Task<XenResult<bool>> SendUserRegistrationEmail(SaveUserCommand command)
+        {
+            await mediatr.Send(new SendUserRegistrationEmailCommand(command)
+            {
+                UserName = $"{command.FirstName} {command.LastName}",
+                DateOfBirth = command.DateOfBirth,
+                MobileNumber = command.MobileNumber,
+                Email = command.EmailAddress
+            });
+
             return new SuccessResult<bool>(true);
         }
     }

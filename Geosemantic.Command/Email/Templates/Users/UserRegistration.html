@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>User Registration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+    <style type="text/css">
+            /* Add some padding on document's body to prevent the content
+        to go underneath the header and footer */
+            body {
+                padding-top: 60px;
+                padding-bottom: 40px;
+            }
+
+            .container {
+                width: 80%;
+                margin: 0 auto; /* Center the DIV horizontally */
+            }
+
+            .fixed-header {
+                width: 100%;
+                position: fixed;
+                background: #F0F3F5;
+                padding: 10px 0;
+                color: #fff;
+            }
+
+        .fixed-footer {
+            width: 100%;
+            position: fixed;
+            background: #3B17FF;
+            padding: 10px 0;
+            color: black;
+        }
+
+            .fixed-header {
+                top: 0;
+            }
+
+            .fixed-footer {
+                bottom: 0;
+            }
+            /* Some more styles to beutify this example */
+            nav a {
+                color: #fff;
+                text-decoration: none;
+                padding: 7px 25px;
+                display: inline-block;
+            }
+
+            .container p {
+                line-height: 200px; /* Create scrollbar to test positioning */
+            }
+    </style>
+</head>
+<body>
+    <div class="fixed-header">
+        <div class="container">
+            <div>
+                <img src="cid:logo">
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div>Dear Admin,</div>
+        <br />
+        New Agent has been registered on Geosemantic. Below are the Agent details
+        <br />
+        <br />
+        <div>User Name - <strong>##AGENTNAME##</strong></div>
+        <div>Mobile Number - <strong>##MOBILENUMBER##</strong></div>
+        <div>Email - <strong>##EMAIL##</strong></div>
+        <div>Date Of Birth - <strong>##DOB##</strong></div>
+    </div>
+    <div class="fixed-footer">
+        <div class="container">Copyright &copy; 2018 Geosemantic</div>
+    </div>
+</body>
+</html>                            
