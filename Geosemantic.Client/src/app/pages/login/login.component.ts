@@ -21,12 +21,7 @@ export class LoginComponent implements OnInit {
     vm: Login;
     returnUrl: string;
     status: string;
-    /**
-     * Constructor
-     *
-     * @param {FuseConfigService} _fuseConfigService
-     * @param {FormBuilder} _formBuilder
-     */
+    
     constructor(
         private _fuseConfigService: FuseConfigService,
         private _formBuilder: FormBuilder,
@@ -34,9 +29,8 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private authService: AuthenticationService,
         private userSessionService: UserSessionService,
-
         private fuseNavigationService: FuseNavigationService) {
-        // Configure the layout
+
         this._fuseConfigService.config = {
             layout: {
                 navbar: {
@@ -58,13 +52,7 @@ export class LoginComponent implements OnInit {
         this.vm = new Login();
     }
 
-    // -----------------------------------------------------------------------------------------------------
-    // @ Lifecycle hooks
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * On init
-     */
+    
     ngOnInit(): void {
         
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';

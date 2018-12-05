@@ -58,11 +58,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
         this.navigationService.goToLogin();
       }
 
-      gotoOrganisation(){
-        this.navigationService.goToOrganisation();
-      }
+     
 
-      checkOrganisation(){
-        return this.userSessionService.isMultipleOrganisation();
-      }
+      
 }

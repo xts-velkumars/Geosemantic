@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {
-    MatButtonModule, MatChipsModule, MatFormFieldModule, MatIconModule, MatInputModule, MatPaginatorModule,
+    MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, MatPaginatorModule,
     MatRippleModule, MatSelectModule, MatSnackBarModule, MatSortModule,
-    MatTableModule, MatTabsModule ,MatCardModule,MatCheckboxModule,MatTooltipModule} from '@angular/material';
+    MatTableModule,  MatCardModule, MatTooltipModule} from '@angular/material';
 
 import { FuseSharedModule } from '@fuse/shared.module';
 
@@ -28,7 +28,6 @@ const routes: Routes = [
         RouterModule.forChild(routes),
 
         MatButtonModule,
-        MatChipsModule,
         MatFormFieldModule,
         MatIconModule,
         MatInputModule,
@@ -38,10 +37,9 @@ const routes: Routes = [
         MatSortModule,
         MatSnackBarModule,
         MatTableModule,
-        MatTabsModule,
         MatCardModule,
-        MatCheckboxModule,
         MatTooltipModule,
+
         FuseSharedModule
     ],
     providers   : [

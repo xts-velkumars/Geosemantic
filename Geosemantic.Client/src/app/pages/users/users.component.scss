@@ -4,8 +4,6 @@
 
     #users {
 
-        
-
         > .center {
 
             > .header {
@@ -18,13 +16,7 @@
                 .search-input-wrapper {
                      max-width: 480px;
                 }
-
-                // @include media-breakpoint-down(xs) {
-                //     margin: 8px 0;
-                //     height: 145px !important;
-                //     min-height: 145px !important;
-                //     max-height: 145px !important;
-                // }
+                
             }
         }
     }

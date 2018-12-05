@@ -21,9 +21,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     register: Register;
     id = 0;
     genderTypes: any;
-    
     roleTypes: any;
-    // Private
     private _unsubscribeAll: Subject<any>;
 
     constructor(
@@ -36,7 +34,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
         private userService: UserService,
     ) {
         this.register = new Register();
-        // Configure the layout
         this._fuseConfigService.config = {
             layout: {
                 navbar: {
@@ -54,17 +51,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
             }
         };
 
-        // Set the private defaults
         this._unsubscribeAll = new Subject();
     }
-
-    // -----------------------------------------------------------------------------------------------------
-    // @ Lifecycle hooks
-    // -----------------------------------------------------------------------------------------------------
-
-    /**
-     * On init
-     */
+    
     ngOnInit(): void {
         this.register.id = 0;
         this.register.roleId = 1;
@@ -95,18 +84,12 @@ export class RegisterComponent implements OnInit, OnDestroy {
             });
     }
 
-    /**
-     * On destroy
-     */
+    
     ngOnDestroy(): void {
-        // Unsubscribe from all subscriptions
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();
     }
-
-    /**
- * On Register
- */
+   
     onRegister() {
         if (this.form.valid) {
             this.userService.saveUser(this.form.value).subscribe(data => {
@@ -115,7 +98,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
         }
     }
     
-
     getGenderType(refresh) {
         this.utilityService.getGenderType(refresh).subscribe(genderTypes => {
             this.genderTypes = genderTypes;
@@ -129,12 +111,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     }
 }
 
-/**
- * Confirm password validator
- *
- * @param {AbstractControl} control
- * @returns {ValidationErrors | null}
- */
+
 export const confirmPasswordValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
 
     if (!control.parent || !control) {
