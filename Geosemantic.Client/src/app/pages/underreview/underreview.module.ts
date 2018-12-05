@@ -13,7 +13,7 @@ import { UtilityService } from '../../services';
 const routes: Routes = [
     {
         path     : '**',
-        component: UnderReviewComponent,canActivate: [AuthGuard]
+        component: UnderReviewComponent
     }
 ];
 
