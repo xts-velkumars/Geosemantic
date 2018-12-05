@@ -29,6 +29,8 @@ namespace Geosemantic.Queries.User
             var users = await context.User
                 .Include(i=>i.Role)
                 .AsNoTracking()
+                .OrderByDescending(i=>i.LastChangeTs)
+                .ThenBy(i=>i.UserStatusType)
                 .ToListAsync(cancellationToken);
 
             return users.Select(Mapper.Map<UsersViewModel>);

@@ -7,6 +7,7 @@ using Geosemantic.Data;
 using Geosemantic.ViewModel;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Xen.Common.Constants;
 
 namespace Geosemantic.Queries.Role
 {
@@ -25,8 +26,9 @@ namespace Geosemantic.Queries.Role
 
             var data = await context.Role
                 .AsNoTracking()
+                .Where(i=> !i.Name.Equals(Common.Constants.RoleConstants.SuperAdmin))
                 .ToListAsync(cancellationToken);
-
+                
             return data.Select(Mapper.Map<LookUpViewModel>);
         }
     }

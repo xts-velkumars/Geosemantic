@@ -1,4 +1,6 @@
-export const environment = {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.environment = {
     apiBaseUrl: 'http://localhost:5000',
     production: false,
     environment: 'Local',
@@ -8,4 +10,5 @@ export const environment = {
     showEnvironment: true,
     sessionIdleTimeOutSeconds: 1200,
     sessionWarningTimeOutSeconds: 20
-  };
+};
+//# sourceMappingURL=environment.js.map
