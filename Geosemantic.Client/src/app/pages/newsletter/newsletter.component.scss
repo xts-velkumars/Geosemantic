@@ -35,6 +35,7 @@ newsletter {
     .content {
         .mat-expansion-panel-header{
             font-family: Roboto, "Helvetica Neue", sans-serif;
+            height: 100px;
         }
         .mat-expansion-panel-content{
             font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -56,7 +57,7 @@ newsletter {
             }
         }
         mat-expansion-panel-header{
-            min-height: 80px;
+            min-height: 100px; 
         }
         .result-info {
             padding-bottom: 16px;

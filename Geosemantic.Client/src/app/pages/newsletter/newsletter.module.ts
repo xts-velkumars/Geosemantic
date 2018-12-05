@@ -4,7 +4,7 @@ import { MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule, Mat
 import {MatExpansionModule} from '@angular/material/expansion';
 import { FuseSharedModule } from '@fuse/shared.module';
 import { NewsletterComponent } from './newsletter.component';
-import { NewsletterService } from './newsletter.service';
+import { NewsletterService } from '../../services/newsletter.service';
 import { AuthGuard } from '../../guards';
 
 
@@ -12,10 +12,7 @@ import { AuthGuard } from '../../guards';
 const routes = [
     {
         path     : '**',
-        component: NewsletterComponent,canActivate: [AuthGuard],
-        resolve  : {
-            search: NewsletterService
-        }
+        component: NewsletterComponent,canActivate: [AuthGuard]
     }
 ];
 

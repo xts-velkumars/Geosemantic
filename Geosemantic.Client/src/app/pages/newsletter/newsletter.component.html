@@ -3,11 +3,23 @@
     <!-- HEADER -->
     <div class="header accent p-24" fxLayout="row" fxLayoutAlign="start center">
 
-        <div class="search-wrapper" fxFlex fxLayout="row" fxLayoutAlign="start center">
+        <div class="title-bar button-bar" fxLayout="column" fxFlex="100" fxLayoutAlign="top start" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center"
+            >
+            <div class="search-wrapper" fxFlex="70" fxLayout="row" fxLayoutAlign="start center">
+                <div class="search" fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon>search</mat-icon>
+                    <input #myInput placeholder="Search" fxFlex (input)="filterItem(myInput.value)">
+                </div>
 
-            <div class="search" fxLayout="row" fxLayoutAlign="start center">
-                <mat-icon>search</mat-icon>
-                <input #myInput placeholder="Search" fxFlex (input)="filterItem(myInput.value)">
+            </div>
+            <div>
+                <button mat-stroked-button color="primary" class="title-button fuse-white my-12 mt-sm-0" (click)="onDayago()">
+                        <mat-icon class="material-icons md-36">arrow_back</mat-icon>Day ago
+                </button>
+                <button mat-stroked-button color="primary" class="title-button fuse-white my-12 mt-sm-0" (click)="onToday()">
+                    <mat-icon class="material-icons md-36">today</mat-icon> Today
+                </button>
+
             </div>
 
         </div>
@@ -18,24 +30,31 @@
     <!-- CONTENT -->
     <div class="content p-24">
         <div class="results">
-                <mat-accordion>
-                        <mat-expansion-panel (opened)="panelOpenState = true"
-                                             (closed)="panelOpenState = false" *ngFor="let item of filteredItems">
-                          <mat-expansion-panel-header>
-                            <mat-panel-title fxFlex="100">
-                                    <div class="header-title">{{item.source.name}}</div>
-                                    <div class="header-sub-title" *ngIf="item.publishedAt!=null"><span class="name">Published at  </span> {{item.publishedAt|date:"dd/MM/yyyy h:mm a"}}</div>
-                                    <div class="header-sub-title" *ngIf="item.author!=null"><span class="name">Author  </span> {{item.author}}</div>
-                            </mat-panel-title>
-                          </mat-expansion-panel-header>
-                          <div >
-                                <div class="title blue-800-fg">{{item.title}}</div>
-                                <div class="url green-800-fg"><a href="{{item.url}}" target="_blank">{{item.url}}</a></div>
-                                <div class="excerpt">{{item.description}}</div>
-                        </div>
-                        </mat-expansion-panel>
-                      </mat-accordion>
-            
+            <mat-accordion>
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" *ngFor="let item of filteredItems">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title fxFlex="100">
+                            <div class="header-title blue-800-fg" fxLayout="row" fxLayoutAlign="start center">
+                                <span fxFlex="95">{{item.title}}</span>
+                                <div fxFlex="5" fxLayoutAlign="center center">
+                                    <a href="{{item.url}}" target="_blank"><mat-icon>call_made</mat-icon></a>
+                                </div>
+                            </div>
+                            <div class="header-sub-title">{{item.description}}</div>
+                            <div class="header-sub-title" *ngIf="item.publishedAt!=null"><span class="name">Published by
+                                </span>{{item.author}} on {{item.publishedAt|date:"dd/MM/yyyy h:mm a" : 'UTC'}}</div>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div>
+                        <div class="header-title">{{item.source.name}}</div>
+                        <div class="header-sub-title" *ngIf="item.publishedAt!=null"><span class="name">Published at </span>
+                            {{item.publishedAt|date:"dd/MM/yyyy h:mm a"}}</div>
+                        <div class="header-sub-title" *ngIf="item.author!=null"><span class="name">Author </span> {{item.author}}</div>
+                        <div class="url green-800-fg"><a href="{{item.url}}" target="_blank">{{item.url}}</a></div>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+
         </div>
     </div>
     <!-- / CONTENT -->
