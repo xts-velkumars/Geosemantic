@@ -60,9 +60,9 @@ export class NewsletterComponent implements OnInit, OnDestroy
      }
      filterItem(value){
         if(!value) this.assignCopy(); //when nothing has typed
-        this.filteredItems = Object.assign([], this.searchItems).filter(
-           item => item.source.name.toLowerCase().indexOf(value.toLowerCase()) > -1
-        )
+         this.filteredItems = Object.assign([], this.searchItems).filter(
+             item => item.source.name.toLowerCase().indexOf(value.toLowerCase()) > -1
+         );
      }
      
 }
