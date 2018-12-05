@@ -15,9 +15,7 @@ export class NewsletterComponent implements OnInit, OnDestroy
     searchItems: any;
    filteredItems: any;
    date: string;
-    // Private
     private _unsubscribeAll: Subject<any>;
-
     
     constructor(private newsletterService: NewsletterService)
     {
@@ -43,7 +41,7 @@ export class NewsletterComponent implements OnInit, OnDestroy
      filterItem(value){
         if(!value) this.assignCopy(); //when nothing has typed
          this.filteredItems = Object.assign([], this.searchItems).filter(
-             item => item.source.name.toLowerCase().indexOf(value.toLowerCase()) > -1
+             item => item.title.toLowerCase().indexOf(value.toLowerCase()) > -1
          );
      }
 
